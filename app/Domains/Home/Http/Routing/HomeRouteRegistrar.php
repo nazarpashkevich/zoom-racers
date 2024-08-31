@@ -10,15 +10,17 @@ use Inertia\Inertia;
 
 class HomeRouteRegistrar extends RouteRegistrar
 {
+    protected array $middlewares = ['auth', 'web'];
+
     public function map(Registrar $route): void
     {
         $route->get('/', function () {
-            return Inertia::render('Welcome', [
+            return Inertia::render('Dashboard', [
                 'canLogin'       => Route::has('login'),
                 'canRegister'    => Route::has('register'),
                 'laravelVersion' => Application::VERSION,
                 'phpVersion'     => PHP_VERSION,
             ]);
-        });
+        })->name('home');
     }
 }

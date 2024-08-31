@@ -1,79 +1,70 @@
-# 🚗 Virtual Racing Platform with Video Chat
+# 🎉 Virtual Event Platform with Video Chat
 
-A cutting-edge platform where users can buy, customize, and race virtual cars while interacting with each other through
-real-time video chat. This project leverages modern web technologies to create an immersive and interactive experience.
+A comprehensive platform for organizing and hosting virtual events, such as conferences, workshops, exhibitions, and
+meetings. This platform allows users to rent virtual spaces, sell tickets, interact in real-time via video chat, and
+access premium features for additional revenue.
 
 ## 🛠️ Technologies Used
 
 ### Backend
 
-- **[Laravel](https://laravel.com/):** Web application framework used for creating APIs, user authentication, and
-  business logic.
-- **[WebSockets](https://laravel.com/docs/10.x/broadcasting#broadcasters):** Real-time communication using Ratchet,
-  Pusher, and Laravel Echo.
-- **[Redis](https://redis.io/):** For caching and queue management, especially for real-time data processing.
-- **[MySQL/PostgreSQL](https://www.mysql.com/):** Relational database for storing user data, cars, race results, and
-  more.
-- **[Elasticsearch](https://www.elastic.co/elasticsearch/):** Full-text search and filtering for cars and other
-  elements.
+- **[Laravel](https://laravel.com/):** Web framework for managing users, events, ticket sales, and payments.
+- **[WebSockets](https://laravel.com/docs/10.x/broadcasting#broadcasters):** Real-time communication for video chat and
+  interactions between participants.
+- **[Redis](https://redis.io/):** Caching, queues, and real-time data management.
+- **[MySQL/PostgreSQL](https://www.mysql.com/):** Relational database for storing user, event, ticket, and transaction
+  data.
+- **[Elasticsearch](https://www.elastic.co/elasticsearch/):** Search and filtering of events, organizers, and services.
 - **[GraphQL](https://graphql.org/)** (Optional): Flexible API querying for the frontend.
 
 ### Frontend
 
-- **[Vue.js](https://vuejs.org/) + [Inertia.js](https://inertiajs.com/):** Building a single-page application (SPA) with
-  reactive and dynamic UI.
-- **[TypeScript](https://www.typescriptlang.org/):** Static typing for JavaScript, enhancing code quality and
+- **[Vue.js](https://vuejs.org/) + [Inertia.js](https://inertiajs.com/):** Building a dynamic single-page application (
+  SPA) with reactive UI.
+- **[TypeScript](https://www.typescriptlang.org/):** Static typing for JavaScript, ensuring code reliability and
   maintainability.
-- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework for responsive and modern UI design.
-- **[Three.js](https://threejs.org/):** 3D rendering for cars and race tracks directly in the browser.
-- **[WebRTC](https://webrtc.org/):** Real-time video chat between users during races.
+- **[Tailwind CSS](https://tailwindcss.com/):** Utility-first CSS framework for responsive and customizable UI design.
+- **[WebRTC](https://webrtc.org/):** Real-time video chat and streaming for event participants.
 - **[PWA](https://web.dev/progressive-web-apps/):** Progressive Web App support for offline access and mobile usability.
-
-### DevOps and Infrastructure
-
-- **[Docker](https://www.docker.com/):** Containerization for consistent development and deployment environments.
-- **[Kubernetes](https://kubernetes.io/)** (Optional): Container orchestration for scalable production environments.
-- **[CI/CD](https://docs.github.com/en/actions):** Automated testing, building, and deployment using GitHub Actions or
-  GitLab CI/CD.
-- **[Nginx](https://www.nginx.com/):** Web server and reverse proxy for handling traffic and load balancing.
-- **[AWS S3](https://aws.amazon.com/s3/)** or **[Cloudinary](https://cloudinary.com/):** Media storage and delivery for
-  images, videos, and other assets.
 
 ## 📐 Architecture
 
-### User Authentication and Profiles
+### Event Creation and Management
 
-- User registration and login via Laravel with OAuth support for social media logins.
-- User profiles displaying achievements, car collection, and racing stats.
+- **Event Types:** Organizers can create various types of events (webinars, conferences, meetings), set up programs, and
+  manage participants.
+- **Ticket Sales:** Create free or paid events, including ticket sales and access management through payment
+  integration.
 
-### Car Shop and Customization
+### Virtual Spaces
 
-- Browse and purchase cars, customize appearance and performance features.
-- Elasticsearch-powered search and filter capabilities.
-- RESTful or GraphQL API for dynamic data interaction.
+- **Virtual Rooms:** Rent virtual rooms, halls, and exhibition booths that can be customized based on event type.
+- **Personalization:** Customize virtual spaces with visual and interactive elements.
 
-### Real-Time Racing
+### Video Chat and Streaming
 
-- WebSocket-based real-time racing system, allowing users to compete against each other live.
-- 3D rendering of cars and race tracks using Three.js.
-- Scoring, leaderboards, and achievements tracking for each race.
+- **Multi-user Video Chat:** Support for multi-user video chat for event participants with options to switch between
+  different "rooms".
+- **Event Streaming:** Live streaming and recording of events for participants who couldn't attend in real-time.
 
-### Video Chat Integration
+### Ticketing and Monetization
 
-- WebRTC-powered video chat for real-time communication during races.
-- Optional overlays and avatars for a personalized experience.
-- Spectator mode for live streaming races with commentary.
+- **Ticket Sales:** Main revenue stream through ticket sales for events with different access levels (general, VIP,
+  etc.).
+- **Payment Integration:** Support for payment systems like Stripe and PayPal for transaction processing.
+- **Premium Features:** Premium features such as enhanced streaming, more participants, or access to exclusive content.
 
-### Social Features
+### Networking and Interaction
 
-- Friend system and direct messaging.
-- Clubs/teams for collaborative racing experiences.
-- Leaderboards and achievements with public display on profiles.
+- **Networking Zones:** Participants can interact with each other through direct messaging, video chat, or dedicated
+  networking zones.
+- **Interactive Features:** Polls, chats, and Q&A sessions to engage participants.
 
-### Monetization (Optional)
+### Organizer Marketplace
 
-- Virtual currency and in-app purchases for unique cars, customizations, and premium features.
-- Subscription model for premium access to exclusive content and races.
+- **Marketplace:** Platform for purchasing additional services and products for events, such as marketing materials,
+  advertising, decorations, etc.
+- **Service Packages:** Organizers can offer their services and packages through the built-in marketplace.
 
 ## 🚀 Getting Started
 

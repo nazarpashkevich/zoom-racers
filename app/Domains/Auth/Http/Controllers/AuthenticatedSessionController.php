@@ -2,7 +2,7 @@
 
 namespace App\Domains\Auth\Http\Controllers;
 
-use App\Domains\Auth\Http\Requests\Auth\LoginRequest;
+use App\Domains\Auth\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +32,7 @@ class AuthenticatedSessionController
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard.index', absolute: false));
+        return redirect()->intended(route('home', absolute: false));
     }
 
     /**
