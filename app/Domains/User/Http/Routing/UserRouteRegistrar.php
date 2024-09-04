@@ -3,7 +3,7 @@
 namespace App\Domains\User\Http\Routing;
 
 use App\Domains\Common\Http\Routing\RouteRegistrar;
-use App\Http\Controllers\ProfileController;
+use App\Domains\User\Http\Controllers\ProfileController;
 use Illuminate\Contracts\Routing\Registrar;
 
 class UserRouteRegistrar extends RouteRegistrar

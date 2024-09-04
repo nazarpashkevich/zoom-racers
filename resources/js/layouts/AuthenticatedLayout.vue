@@ -32,6 +32,22 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('home')" :active="route().current('home')">
                                     Dashboard
                                 </NavLink>
+                                <NavLink :href="route('events.index')" :active="route().current('events.*')">
+                                    Explore Events
+                                </NavLink>
+                                <NavLink :href="route('personal-events.index')"
+                                         :active="route().current('personal-events.index')">
+                                    My Events
+                                </NavLink>
+                                <NavLink :href="route('tickets.index')" :active="route().current('tickets.*')">
+                                    Tickets
+                                </NavLink>
+                                <NavLink :href="route('virtual.index')" :active="route().current('virtual.*')">
+                                    Virtual Spaces
+                                </NavLink>
+                                <NavLink :href="route('marketplace.index')" :active="route().current('marketplace.*')">
+                                    Marketplace
+                                </NavLink>
                             </div>
                         </div>
 
@@ -114,6 +130,21 @@ const showingNavigationDropdown = ref(false);
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            My Events
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            Explore Events
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            Tickets
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            Virtual Spaces
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                            Marketplace
                         </ResponsiveNavLink>
                     </div>
 
