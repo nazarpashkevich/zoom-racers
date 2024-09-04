@@ -2,6 +2,7 @@
 
 namespace App\Domains\Events\Http\Routing;
 
+use App\Domains\Common\Http\Actions\GetApiDictionaryAction;
 use App\Domains\Common\Http\Routing\RouteRegistrar;
 use App\Domains\Events\Http\Controllers\EventsController;
 use App\Domains\Events\Http\Controllers\PersonalController;
@@ -18,6 +19,7 @@ class EventsRouteRegistrar extends RouteRegistrar
             ['prefix' => 'events', 'controller' => EventsController::class, 'as' => 'events.'],
             function (Registrar $route) {
                 $route->get('', 'index')->name('index');
+                $route->get('dictionaries/{dictionary}', GetApiDictionaryAction::class)->name('dictionary');
                 $route->get('{event}', 'show')->name('show');
             }
         );

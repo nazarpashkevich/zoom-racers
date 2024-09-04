@@ -6,7 +6,9 @@
             <div class="container mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x">
                     <div class="flex-1 py-8">
-                        <EventsFilters/>
+                        <Suspense>
+                            <EventsFilters/>
+                        </Suspense>
                     </div>
                     <div class="flex-[3] px-12 py-8 gap-12">
                         <EventsList/>

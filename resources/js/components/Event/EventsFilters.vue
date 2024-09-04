@@ -18,6 +18,9 @@
             <FilterItem title="Languages">
                 <CheckboxList v-model="languages"/>
             </FilterItem>
+            <FilterItem title="Platforms">
+                <CheckboxList v-model="platforms"/>
+            </FilterItem>
         </div>
     </div>
 </template>
@@ -28,29 +31,13 @@ import Checkbox from "@/components/Form/Checkbox.vue";
 import FilterItem from "@/components/Filter/FilterItem.vue";
 import CheckboxList from "@/components/Form/CheckboxList.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
+import EventService from "@/services/EventService";
 
 export default defineComponent({
     name: "EventsFilters",
     components: { CheckboxList, FilterItem, Checkbox, FilterIcon, VueDatePicker },
     data: () => ({
         date: null,
-        categories: [
-            {
-                key: 'Category 1',
-                title: 'Category 1',
-                value: false
-            },
-            {
-                key: 'Category 2',
-                title: 'Category 2',
-                value: false
-            },
-            {
-                key: 'Category 3',
-                title: 'Category 3',
-                value: false
-            }
-        ],
         priceRanges: [
             {
                 key: 'low',
@@ -72,29 +59,17 @@ export default defineComponent({
                 title: '50+',
                 value: false
             }
-        ],
-        languages: [
-            {
-                key: 'english',
-                title: 'English',
-                value: false
-            },
-            {
-                key: 'spanish',
-                title: 'Spanish',
-                value: false
-            },
-            {
-                key: 'dutch',
-                title: 'Dutch',
-                value: false
-            },
-            {
-                key: 'other',
-                title: 'Other',
-                value: false
-            }
         ]
-    })
+    }),
+    async setup() {
+        const service = EventService.make();
+        const [languages, categories, platforms] = await Promise.all([
+            service.languages(),
+            service.categories(),
+            service.platforms(),
+        ]);
+        
+        return { languages, categories, platforms };
+    }
 })
 </script>

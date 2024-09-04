@@ -1,7 +1,8 @@
 <template>
     <input
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        v-model="model"
+        v-model="modelValue"
+        @change="(e) => this.$emit('update:modelValue', e.target.value)"
         ref="input"
     />
 </template>
@@ -34,6 +35,6 @@ export default defineComponent({
         return {
             focus: this.focus,
         };
-    },
+    }
 });
 </script>

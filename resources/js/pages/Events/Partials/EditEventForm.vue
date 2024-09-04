@@ -122,6 +122,7 @@ import DragAndDropInputInput from "@/components/Form/DragAndDropInputInput.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import UiSelect from "@/components/Form/UiSelect.vue";
 import TextAreaInput from "@/components/List/TextAreaInput.vue";
+import EventService from "@/services/EventService";
 
 export default defineComponent({
     name: "EditEventForm",
@@ -136,64 +137,17 @@ export default defineComponent({
         Link,
         VueDatePicker
     },
-    data: () => ({
-        languages: [
-            {
-                title: 'English',
-                value: 'english'
-            },
-            {
-                title: 'Spanish',
-                value: 'spanish'
-            },
-            {
-                title: 'French',
-                value: 'french'
-            },
-            {
-                title: 'Other',
-                value: 'other'
-            },
-        ],
-        categories: [
-            {
-                title: 'Languages',
-                value: 'languages'
-            },
-            {
-                title: 'Handmade',
-                value: 'handmade'
-            },
-            {
-                title: 'Business',
-                value: 'business'
-            },
-            {
-                title: 'Other',
-                value: 'other'
-            },
-        ],
-        platforms: [
-            {
-                title: 'Google Meet',
-                value: 'google_meet'
-            },
-            {
-                title: 'Zoom',
-                value: 'zoom'
-            },
-            {
-                title: 'Microsoft Teams',
-                value: 'microsoft_teams'
-            },
-            {
-                title: 'Other',
-                value: 'other'
-            },
-        ]
-    }),
+    data: () => ({}),
     props: {},
-    setup() {
+    async setup() {
+        const service = EventService.make();
+
+        const [languages, categories, platforms] = await Promise.all([
+            service.languages(),
+            service.categories(),
+            service.platforms(),
+        ]);
+
         const form = useForm({
             image: '',
             title: '',
@@ -206,7 +160,7 @@ export default defineComponent({
             description: '',
         });
 
-        return { form };
+        return { form, languages, categories, platforms };
     }
 })
 </script>
