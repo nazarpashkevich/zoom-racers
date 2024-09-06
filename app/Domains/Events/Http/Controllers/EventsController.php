@@ -27,6 +27,8 @@ class EventsController
 
     public function show(Event $event): Response
     {
-        return Inertia::render('Events/Show', []);
+        $event->load('user');
+        
+        return Inertia::render('Events/Show', ['event' => EventData::from($event)]);
     }
 }

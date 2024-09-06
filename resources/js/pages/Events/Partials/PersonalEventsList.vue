@@ -9,7 +9,7 @@
         <template v-for="event in events.data">
             <EventListCard :event="event">
                 <template #actions>
-                    <div class="flex flex-col max-w-32 gap-4 justify-end mx-auto">
+                    <div class="flex flex-col max-w-32 gap-4 justify-end ml-auto mr-12">
                         <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', event.id))">
                             Edit
                         </PrimaryButton>

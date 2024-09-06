@@ -11,6 +11,8 @@ use App\Domains\Events\Enums\EventFilter;
 use App\Domains\Events\Enums\Language;
 use App\Domains\Events\Enums\Platform;
 use App\Domains\User\Models\User;
+use Database\Factories\EventFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -32,6 +34,7 @@ class Event extends Model
 {
     use InteractWithBuilder;
     use InteractWithFilter;
+    use HasFactory;
 
     public $customBuilder = EventBuilder::class;
 
@@ -47,6 +50,11 @@ class Event extends Model
         'platform' => Platform::class,
         'price'    => MoneyCast::class,
     ];
+
+    protected static function newFactory(): EventFactory|\Illuminate\Database\Eloquent\Factories\Factory
+    {
+        return EventFactory::new();
+    }
 
     public function user(): BelongsTo
     {

@@ -1,6 +1,6 @@
 <template>
     <Link class="flex gap-4 hover:bg-gray-50 py-8 px-6 h-72 cursor-pointer" :href="route('events.show', event.id)">
-        <div class="w-1/3 px-12">
+        <div class="w-1/3 px-6">
             <div class="bg-cover bg-center rounded-md w-full h-full"
                  :style="{backgroundImage: `url('${event.picture}')`}"></div>
         </div>
@@ -33,9 +33,7 @@
                         </div>
                     </PrimaryButton>
                 </template>
-                <div v-else class="ml-auto">
-                    <slot name="actions"/>
-                </div>
+                <slot v-else name="actions"/>
             </div>
         </div>
     </Link>

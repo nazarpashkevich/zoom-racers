@@ -6,7 +6,7 @@
             <ViewChanger v-if="withViewMode" :model-value="viewMode" @update:model-value="updateViewMode"/>
         </div>
     </div>
-    <div class="grid gap-12 mb-12" :class="[viewMode === listViewModes.Grid ? 'grid-cols-3 ' : 'grid-cols-1 divide-y']">
+    <div class="grid mb-12" :class="[viewMode === listViewModes.Grid ? 'grid-cols-3 gap-12' : 'grid-cols-1 divide-y']">
         <template v-for="event in events.data">
             <EventGridCard v-if="viewMode === listViewModes.Grid" :event="event"/>
             <EventListCard v-else :event="event"/>

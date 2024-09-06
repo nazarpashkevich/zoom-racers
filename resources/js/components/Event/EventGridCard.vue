@@ -1,12 +1,13 @@
 <template>
-    <Link class="flex flex-col gap-4 hover:bg-gray-50 py-4 px-6 cursor-pointer" :href="route('events.show', event.id)">
+    <Link class="flex flex-col gap-2 hover:bg-gray-50 py-4 px-6 cursor-pointer" :href="route('events.show',
+    event.id)">
         <div class="bg-cover bg-center h-64 rounded-md"
              :style="{backgroundImage: `url('${event.picture}')`}"></div>
-        <div class="flex flex-col gap-2">
-            <div class="text-xl font-semibold text-left hover:text-indigo-900">{{ event.title }}</div>
+        <div class="text-xl font-semibold text-left hover:text-indigo-900 my-auto">{{ event.title }}</div>
+        <div class="flex flex-col gap-2 mt-auto">
             <div class="text-xs text-gray-500">{{ resource.date() }}</div>
             <div class="text-md font-semibold">{{ resource.price() }}</div>
-            <div class="flex gap-4">
+            <div class="flex gap-4 items-center">
                 <div class="text-xs rounded-lg px-4 py-1 bg-purple-50 text-purple-700 inline-block">
                     {{ event.language.title }}
                 </div>
@@ -19,14 +20,13 @@
                 <LocationIcon class="w-3 h-3 fill-blue-500"/>
                 {{ event.platform.title }}
             </div>
-
-            <PrimaryButton>
-                <div class="flex gap-2 justify-center w-full">
-                    <BasketIcon class="fill-white w-4 h-4"/>
-                    Add to Card
-                </div>
-            </PrimaryButton>
         </div>
+        <PrimaryButton class="mt-auto">
+            <div class="flex gap-2 justify-center w-full">
+                <BasketIcon class="fill-white w-4 h-4"/>
+                Add to Card
+            </div>
+        </PrimaryButton>
     </Link>
 </template>
 <script lang="ts">
