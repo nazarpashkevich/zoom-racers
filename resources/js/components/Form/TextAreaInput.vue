@@ -1,7 +1,8 @@
 <template>
     <textarea
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        v-model="model"
+        :value="modelValue"
+        @change="(e) => this.$emit('update:modelValue', e.target.value)"
         ref="input"
     ></textarea>
 </template>

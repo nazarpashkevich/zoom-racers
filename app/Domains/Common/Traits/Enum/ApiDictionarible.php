@@ -6,19 +6,21 @@ use Illuminate\Support\Str;
 
 trait ApiDictionarible
 {
-    // @todo tranfer to frontend in some way
     public static function options(): array
     {
-        $cases = static::cases();
-        $options = [];
-        foreach ($cases as $case) {
-            $options[] = [
-                'value' => $case->value,
-                'title' => Str::headline($case->name),
-            ];
-        }
-
-        return $options;
+        return array_map(fn (self $case) => static::toResource($case), static::cases());
     }
 
+    public function toArray(): array
+    {
+        return static::toResource($this);
+    }
+
+    public static function toResource(self $enum): array
+    {
+        return [
+            'value' => $enum->value,
+            'title' => Str::headline($enum->name),
+        ];
+    }
 }

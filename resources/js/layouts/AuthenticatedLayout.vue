@@ -36,7 +36,7 @@ const showingNavigationDropdown = ref(false);
                                     Explore Events
                                 </NavLink>
                                 <NavLink :href="route('personal-events.index')"
-                                         :active="route().current('personal-events.index')">
+                                         :active="route().current('personal-events.*')">
                                     My Events
                                 </NavLink>
                                 <NavLink :href="route('tickets.index')" :active="route().current('tickets.*')">

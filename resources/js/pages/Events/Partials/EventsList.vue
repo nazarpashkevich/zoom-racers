@@ -2,27 +2,18 @@
     <div class="flex mb-12">
         <h1 class="font-semibold text-2xl text-gray-800">All events <span class="text-gray-600 ml-2">(123+)</span></h1>
         <div class="ml-auto flex">
-            <div v-if="withSort" class="mr-8 flex items-center">
-                <span class="mr-4 text-sm text-slate-500">Sort by</span>
-                <UiSelect v-model="sort" :options="sortOptions"/>
-            </div>
-            <ViewChanger v-if="withViewMode" v-model="viewMode"/>
+            <SortSelect v-if="withSort" class="mr-8" :options="sortOptions" path="events.index"/>
+            <ViewChanger v-if="withViewMode" :model-value="viewMode" @update:model-value="updateViewMode"/>
         </div>
     </div>
     <div class="grid gap-12 mb-12" :class="[viewMode === listViewModes.Grid ? 'grid-cols-3 ' : 'grid-cols-1 divide-y']">
-        <template v-if="viewMode === listViewModes.Grid">
-            <EventGridCard/>
-            <EventGridCard/>
-            <EventGridCard/>
-        </template>
-        <template v-else>
-            <EventListCard/>
-            <EventListCard/>
-            <EventListCard/>
+        <template v-for="event in events.data">
+            <EventGridCard v-if="viewMode === listViewModes.Grid" :event="event"/>
+            <EventListCard v-else :event="event"/>
         </template>
     </div>
     <div class="flex justify-center">
-        <Pagination :meta="paginator"/>
+        <Pagination :meta="events.meta"/>
     </div>
 </template>
 <script lang="ts">
@@ -35,10 +26,27 @@ import { ListViewMode } from "@/enums/ListViewMode";
 import EventGridCard from "@/components/Event/EventGridCard.vue";
 import Pagination from "@/components/List/Pagination.vue";
 import EventListCard from "@/components/Event/EventListCard.vue";
+import { BaseData } from "@/contracts/List";
+import EventModel from "@/contracts/events/EventModel";
+import SortSelect from "@/components/List/SortSelect.vue";
 
 export default defineComponent({
     name: "EventsList",
-    components: { EventListCard, Pagination, EventGridCard, ViewChanger, GridViewIcon, ListViewIcon, UiSelect },
+    components: {
+        SortSelect,
+        EventListCard,
+        Pagination,
+        EventGridCard,
+        ViewChanger,
+        GridViewIcon,
+        ListViewIcon,
+        UiSelect
+    },
+    computed: {
+        viewMode() {
+            return this.$store.state.viewMode.mode;
+        }
+    },
     data: () => ({
         sort: "",
         sortOptions: [
@@ -49,18 +57,12 @@ export default defineComponent({
             { title: 'Date (desc)', value: "date:desc" },
         ],
         listViewModes: ListViewMode,
-        viewMode: ListViewMode.Grid,
-        paginator: {
-            from: 1,
-            to: 3,
-            current_page: 1,
-            last_page: 3,
-            per_page: 10,
-            total: 28,
-            path: '/',
-            pageName: 'page',
-        }
     }),
+    methods: {
+        updateViewMode(mode: ListViewMode) {
+            this.$store.dispatch('setMode', mode);
+        }
+    },
     props: {
         withSort: {
             type: Boolean,
@@ -69,7 +71,12 @@ export default defineComponent({
         withViewMode: {
             type: Boolean,
             default: true
+        },
+        events: {
+            type: Object as BaseData<EventModel>,
+            required: true
         }
-    }
+    },
+
 })
 </script>

@@ -1,4 +1,4 @@
-import DictionaribleEnum from "@/contracts/DictionaribleEnum";
+import DictionaribleEnum from "@/contracts/common/DictionaribleEnum";
 import ApiClient from "@/api/ApiClient";
 
 export default class EnumService {

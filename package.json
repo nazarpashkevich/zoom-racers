@@ -21,6 +21,8 @@
         "vue-tsc": "^2.0.24"
     },
     "dependencies": {
-        "@vuepic/vue-datepicker": "^9.0.2"
+        "@vuepic/vue-datepicker": "^9.0.2",
+        "dayjs": "^1.11.13",
+        "vuex": "^4.0.2"
     }
 }

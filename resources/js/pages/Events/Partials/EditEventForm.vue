@@ -1,7 +1,8 @@
 <template>
-    <form @submit.prevent="form.patch(route('profile.update'))" class="flex gap-12">
+    <form @submit.prevent="onSubmit" class="flex gap-12">
         <div class="w-1/2">
-            <DragAndDropInputInput v-model="form.image" class="h-96"/>
+            <DragAndDropInputInput v-model="form.picture" class="h-96"/>
+            <InputError class="mt-2" :message="form.errors.picture"/>
         </div>
         <div class="w-1/2 space-y-6">
             <div>
@@ -121,8 +122,9 @@ import PrimaryButton from "@/components/PrimaryButton.vue";
 import DragAndDropInputInput from "@/components/Form/DragAndDropInputInput.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import UiSelect from "@/components/Form/UiSelect.vue";
-import TextAreaInput from "@/components/List/TextAreaInput.vue";
+import TextAreaInput from "@/components/Form/TextAreaInput.vue";
 import EventService from "@/services/EventService";
+import EventModel from "@/contracts/events/EventModel";
 
 export default defineComponent({
     name: "EditEventForm",
@@ -138,8 +140,25 @@ export default defineComponent({
         VueDatePicker
     },
     data: () => ({}),
-    props: {},
-    async setup() {
+    methods: {
+        onSubmit() {
+            this.form.transform((data) => ({
+                ...data,
+                start: data.date[0],
+                end: data.date[1]
+            }));
+
+            this.event?.id ? this.form.put(route('personal-events.update', this.event.id))
+                : this.form.post(route('personal-events.store'));
+        }
+    },
+    props: {
+        event: {
+            type: Object as EventModel,
+            required: false
+        }
+    },
+    async setup(props) {
         const service = EventService.make();
 
         const [languages, categories, platforms] = await Promise.all([
@@ -148,16 +167,18 @@ export default defineComponent({
             service.platforms(),
         ]);
 
+        const event = props.event as EventModel;
+
         const form = useForm({
-            image: '',
-            title: '',
-            date: null,
-            language: '',
-            category: '',
-            platform: '',
-            link: '',
-            price: '',
-            description: '',
+            picture: event?.picture ?? null,
+            title: event?.title ?? '',
+            date: event ? [event.start, event.end] : null,
+            language: event?.language.value ?? '',
+            category: event?.category.value ?? '',
+            platform: event?.platform.value ?? '',
+            link: event?.link ?? '',
+            price: event?.price.value ?? '',
+            description: event?.description ?? '',
         });
 
         return { form, languages, categories, platforms };

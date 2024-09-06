@@ -19,14 +19,15 @@ class GetApiDictionaryAction
      * @param  string                    $dictionary
      * @param  \Illuminate\Http\Request  $request
      *
-     * @return void
+     * @return \Illuminate\Auth\Access\Response|\Illuminate\Http\JsonResponse
      */
     public function __invoke(string $dictionary, Request $request): Response|JsonResponse
     {
         // detect domain
         $domain = Str::headline($request->segment(1));
-        $dictionary = Str::headline($dictionary);
+        $dictionary = Str::studly($dictionary);
         $enum = "\App\Domains\\$domain\Enums\\$dictionary";
+
         if (class_exists($enum) && in_array(ApiDictionarible::class, class_uses($enum))) {
             return $this->respondWithSuccess(['data' => $enum::options()]);
         }

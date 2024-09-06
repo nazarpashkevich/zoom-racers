@@ -6,21 +6,31 @@
         </div>
         <div class="flex gap-8 flex-col">
             <FilterItem title="Date">
-                <VueDatePicker v-model="date" range :teleport="true" :auto-position="false"
-                               :enable-time-picker="false"/>
+                <VueDatePicker
+                    v-model="filterForm.filters.date"
+                    range
+                    :teleport="true"
+                    :auto-position="false"
+                    :enable-time-picker="false"
+                />
             </FilterItem>
             <FilterItem title="Category">
-                <CheckboxList v-model="categories"/>
+                <CheckboxList v-model="filterForm.filters.category" :options="categories"/>
             </FilterItem>
             <FilterItem title="Price">
-                <CheckboxList v-model="priceRanges"/>
+                <RadioButtonList v-model="filterForm.filters.priceRange" :options="priceRanges"/>
             </FilterItem>
             <FilterItem title="Languages">
-                <CheckboxList v-model="languages"/>
+                <CheckboxList v-model="filterForm.filters.language" :options="languages"/>
             </FilterItem>
             <FilterItem title="Platforms">
-                <CheckboxList v-model="platforms"/>
+                <CheckboxList v-model="filterForm.filters.platform" :options="platforms"/>
             </FilterItem>
+
+            <div class="flex justify-between">
+                <PrimaryButton class="mt-4" @click="submitFilters">Apply</PrimaryButton>
+                <SecondaryButton class="mt-4" @click="resetFilters">Reset</SecondaryButton>
+            </div>
         </div>
     </div>
 </template>
@@ -32,44 +42,61 @@ import FilterItem from "@/components/Filter/FilterItem.vue";
 import CheckboxList from "@/components/Form/CheckboxList.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import EventService from "@/services/EventService";
+import { router, useForm } from "@inertiajs/vue3";
+import RadioButtonList from "@/components/Form/RadioList.vue";
+import SecondaryButton from "@/components/SecondaryButton.vue";
+import PrimaryButton from "@/components/PrimaryButton.vue";
 
 export default defineComponent({
     name: "EventsFilters",
-    components: { CheckboxList, FilterItem, Checkbox, FilterIcon, VueDatePicker },
-    data: () => ({
-        date: null,
-        priceRanges: [
-            {
-                key: 'low',
-                title: '0-5',
-                value: false
-            },
-            {
-                key: 'medium',
-                title: '5-10',
-                value: false
-            },
-            {
-                key: 'upper',
-                title: '10-30',
-                value: false
-            },
-            {
-                key: 'expensive',
-                title: '50+',
-                value: false
-            }
-        ]
-    }),
-    async setup() {
+    components: {
+        PrimaryButton,
+        SecondaryButton,
+        RadioButtonList,
+        CheckboxList,
+        FilterItem,
+        Checkbox,
+        FilterIcon,
+        VueDatePicker
+    },
+    props: {
+        route: {
+            type: String,
+            required: true
+        },
+        appliedFilters: {
+            type: Object as Record<string, string[]>,
+            default: {}
+        }
+    },
+    methods: {
+        submitFilters() {
+            this.filterForm.get(this.route, { replace: true });
+        },
+        resetFilters() {
+            router.visit(this.route);
+        }
+    },
+    async setup(props) {
         const service = EventService.make();
-        const [languages, categories, platforms] = await Promise.all([
+        const [languages, categories, platforms, priceRanges] = await Promise.all([
             service.languages(),
             service.categories(),
             service.platforms(),
+            service.priceRanges(),
         ]);
-        
-        return { languages, categories, platforms };
+
+        const filterForm = useForm({
+            filters: {
+                date: props.appliedFilters?.date ?? null,
+                language: props.appliedFilters?.language ?? [],
+                category: props.appliedFilters?.category ?? [],
+                platform: props.appliedFilters?.platform ?? [],
+                priceRange: props.appliedFilters?.priceRange ?? null,
+            }
+        });
+
+        return { languages, categories, platforms, priceRanges, filterForm };
     }
 })
 </script>

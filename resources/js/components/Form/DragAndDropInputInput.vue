@@ -16,27 +16,27 @@
             id="fileInput"
             class="hidden"
             @change="onChange"
-            ref="file"
+            ref="fileInput"
         />
     </label>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     name: "DragAndDropInput",
     data: () => ({
         isDragging: false,
-        file: null,
     }),
     computed: {
         fileUrl() {
-            return this.file ? URL.createObjectURL(this.file) : null;
+            return this.file ?? null;
         }
     },
     methods: {
         onChange() {
-            this.file = this.$refs.file.files[0];
+            this.file = URL.createObjectURL(this.$refs.fileInput.files[0]);
+            this.$emit('update:modelValue', this.$refs.fileInput.files[0]);
         },
         dragover(e) {
             e.preventDefault();
@@ -53,10 +53,17 @@ export default defineComponent({
         },
     },
     props: {
-        modelValue: {
-            type: String,
-            required: true
-        },
+        modelValue: {},
+    },
+    setup(props) {
+        const file = ref('');
+
+        if (props.modelValue) {
+            file.value = props.modelValue;
+        }
+        console.log(file);
+        console.log(props.modelValue);
+        return { file };
     }
 })
 </script>

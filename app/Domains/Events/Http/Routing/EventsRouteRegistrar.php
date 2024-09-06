@@ -29,7 +29,10 @@ class EventsRouteRegistrar extends RouteRegistrar
             ['prefix' => 'personal-events', 'controller' => PersonalController::class, 'as' => 'personal-events.'],
             function (Registrar $route) {
                 $route->get('', 'index')->name('index');
+                $route->post('', 'store')->name('store');
+                $route->get('create', 'create')->name('create');
                 $route->get('{event}', 'edit')->name('edit');
+                $route->put('{event}', 'update')->name('update');
             }
         );
 

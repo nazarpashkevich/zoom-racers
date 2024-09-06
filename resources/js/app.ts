@@ -4,10 +4,18 @@ import '../css/app.css';
 import { createApp, DefineComponent, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import { ZiggyVue } from 'ziggy-js';
 import '@vuepic/vue-datepicker/dist/main.css';
+import { createStore } from 'vuex'
+import { viewMode } from "@/store/ViewMode";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+const store = createStore({
+    modules: {
+        viewMode
+    }
+});
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -16,6 +24,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(store)
             .mount(el);
     },
     progress: {

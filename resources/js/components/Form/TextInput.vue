@@ -1,7 +1,7 @@
 <template>
     <input
         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        v-model="modelValue"
+        :value="modelValue"
         @change="(e) => this.$emit('update:modelValue', e.target.value)"
         ref="input"
     />
@@ -12,7 +12,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     props: {
         modelValue: {
-            type: String,
+            type: [String, Number],
             required: true,
         },
     },

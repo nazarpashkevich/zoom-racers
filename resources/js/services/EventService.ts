@@ -1,4 +1,4 @@
-import DictionaribleEnum from "@/contracts/DictionaribleEnum";
+import DictionaribleEnum from "@/contracts/common/DictionaribleEnum";
 import EnumService from "@/services/EnumService";
 
 export default class EventService {
@@ -19,5 +19,9 @@ export default class EventService {
 
     public platforms(): Promise<DictionaribleEnum[]> {
         return this.enumService.requestEnum('events', 'platform');
+    }
+
+    public priceRanges(): Promise<DictionaribleEnum[]> {
+        return this.enumService.requestEnum('events', 'price-range');
     }
 }

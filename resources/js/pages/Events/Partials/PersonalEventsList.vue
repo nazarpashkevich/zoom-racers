@@ -1,56 +1,31 @@
 <template>
     <div class="flex mb-12">
         <h1 class="font-semibold text-2xl text-gray-800">My Events <span class="text-gray-600 ml-2">(123+)</span></h1>
+        <Link :href="route('personal-events.create')" class="ml-auto">
+            <PrimaryButton>Add</PrimaryButton>
+        </Link>
     </div>
     <div class="grid mb-12 grid-cols-1 divide-y">
-        <EventListCard>
-            <template #actions>
-                <div class="flex flex-col max-w-32 gap-4 justify-end mx-auto">
-                    <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', 1))">
-                        Edit
-                    </PrimaryButton>
-                    <SecondaryButton @click.prevent="() => router.visit(route('events.show', 1))">
-                        Show
-                    </SecondaryButton>
-                    <DangerButton @click.prevent="() => itemToDelete = 1">
-                        Delete
-                    </DangerButton>
-                </div>
-            </template>
-        </EventListCard>
-        <EventListCard>
-            <template #actions>
-                <div class="flex flex-col max-w-32 gap-4 justify-end mx-auto">
-                    <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', 1))">
-                        Edit
-                    </PrimaryButton>
-                    <SecondaryButton @click.prevent="() => router.visit(route('events.show', 1))">
-                        Show
-                    </SecondaryButton>
-                    <DangerButton @click.prevent="() => itemToDelete = 1">
-                        Delete
-                    </DangerButton>
-                </div>
-            </template>
-        </EventListCard>
-        <EventListCard>
-            <template #actions>
-                <div class="flex flex-col max-w-32 gap-4 justify-end mx-auto">
-                    <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', 1))">
-                        Edit
-                    </PrimaryButton>
-                    <SecondaryButton @click.prevent="() => router.visit(route('events.show', 1))">
-                        Show
-                    </SecondaryButton>
-                    <DangerButton @click.prevent="() => itemToDelete = 1">
-                        Delete
-                    </DangerButton>
-                </div>
-            </template>
-        </EventListCard>
+        <template v-for="event in events.data">
+            <EventListCard :event="event">
+                <template #actions>
+                    <div class="flex flex-col max-w-32 gap-4 justify-end mx-auto">
+                        <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', event.id))">
+                            Edit
+                        </PrimaryButton>
+                        <SecondaryButton @click.prevent="() => router.visit(route('events.show', event.id))">
+                            Show
+                        </SecondaryButton>
+                        <DangerButton @click.prevent="itemToDelete = event.id">
+                            Delete
+                        </DangerButton>
+                    </div>
+                </template>
+            </EventListCard>
+        </template>
     </div>
     <div class="flex justify-center">
-        <Pagination class="py-4" :meta="paginator"/>
+        <Pagination class="py-4" :meta="events.meta"/>
     </div>
     <Modal :show="Number.isInteger(itemToDelete)" @close="() => itemToDelete = null">
         <div class="p-6">
@@ -78,11 +53,13 @@ import EventListCard from "@/components/Event/EventListCard.vue";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
 import DangerButton from "@/components/DangerButton.vue";
-import { router } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import Modal from "@/components/Modal.vue";
 import TextInput from "@/components/Form/TextInput.vue";
 import InputLabel from "@/components/Form/InputLabel.vue";
 import InputError from "@/components/Form/InputError.vue";
+import { BaseData } from "@/contracts/List";
+import EventModel from "@/contracts/events/EventModel";
 
 export default defineComponent({
     name: "PersonalEventsList",
@@ -97,6 +74,7 @@ export default defineComponent({
         ViewChanger,
         GridViewIcon,
         ListViewIcon,
+        Link,
         UiSelect
     },
     data: () => ({
@@ -110,33 +88,15 @@ export default defineComponent({
             { title: 'Date (desc)', value: "date:desc" },
         ],
         listViewModes: ListViewMode,
-        paginator: {
-            from: 1,
-            to: 3,
-            current_page: 1,
-            last_page: 3,
-            per_page: 10,
-            total: 28,
-            path: '/',
-            pageName: 'page',
-        }
     }),
     props: {
-        withSort: {
-            type: Boolean,
-            default: true
-        },
-        withViewMode: {
-            type: Boolean,
-            default: true
-        },
         viewMode: {
             type: String as ListViewMode,
             default: ListViewMode.Grid
         },
-        title: {
-            type: String,
-            default: 'All Events'
+        events: {
+            type: Object as BaseData<EventModel>,
+            required: true
         }
     },
     methods: {

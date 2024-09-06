@@ -10,7 +10,7 @@
                     <div class="flex-1 py-8">
                     </div>
                     <div class="flex-[3] px-12 py-8 gap-12 divide-y">
-                        <PersonalEventsList/>
+                        <PersonalEventsList :events="events"/>
                     </div>
                 </div>
             </div>
@@ -25,6 +25,8 @@ import { Head } from '@inertiajs/vue3';
 import EventsList from "@/pages/Events/Partials/EventsList.vue";
 import { ListViewMode } from "@/enums/ListViewMode";
 import PersonalEventsList from "@/pages/Events/Partials/PersonalEventsList.vue";
+import { BaseData } from "@/contracts/List";
+import EventModel from "@/contracts/events/EventModel";
 
 export default defineComponent({
     components: {
@@ -33,10 +35,14 @@ export default defineComponent({
         EventsList,
         Head
     },
-    data() {
-        return {
-            viewMode: ListViewMode.List
-        };
+    data: () => ({
+        viewMode: ListViewMode.List
+    }),
+    props: {
+        events: {
+            type: Object as BaseData<EventModel>,
+            required: true
+        }
     }
 });
 </script>
