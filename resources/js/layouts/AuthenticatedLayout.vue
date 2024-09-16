@@ -6,6 +6,7 @@ import DropdownLink from '@/components/DropdownLink.vue';
 import NavLink from '@/components/NavLink.vue';
 import ResponsiveNavLink from '@/components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import HeaderCartIcon from "@/components/Cart/HeaderCartIcon.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -13,7 +14,7 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-100 sticky top-0 z-[80]">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -87,6 +88,7 @@ const showingNavigationDropdown = ref(false);
                                     </template>
                                 </Dropdown>
                             </div>
+                            <HeaderCartIcon class="ml-2"/>
                         </div>
 
                         <!-- Hamburger -->
@@ -166,7 +168,6 @@ const showingNavigationDropdown = ref(false);
                     </div>
                 </div>
             </nav>
-
             <!-- Page Heading -->
             <header class="bg-white shadow" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">

@@ -4,11 +4,14 @@
              :class="[isOpened ? 'rounded-t-lg' : ' rounded-lg']"
              @click="isOpened = !isOpened">
             <span>{{ displayValue }}</span>
-            <ArrowIcon class="w-2 h-2 ml-auto my-auto rotate-90"/>
+            <ArrowIcon
+                class="w-2 h-2 ml-auto my-auto transition-transform"
+                :class="[isOpened ? '-rotate-90' : 'rotate-90']"
+            />
         </div>
         <template v-if="isOpened">
             <ul
-                class="absolute l-0 t-0 divide-y border border-rounded-sm shadow-sm w-full rounded-b-lg bg-white z-[100]">
+                class="absolute l-0 t-0 divide-y border border-rounded-sm shadow-sm w-full rounded-b-lg bg-white z-[70]">
                 <template v-for="option in options">
                     <li class="py-2 px-6 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer"
                         @click="() => onSelectValue(option)">

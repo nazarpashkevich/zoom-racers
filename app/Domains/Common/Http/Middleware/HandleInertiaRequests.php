@@ -2,6 +2,7 @@
 
 namespace App\Domains\Common\Http\Middleware;
 
+use App\Domains\Cart\UserCart;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -30,6 +31,11 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        /**
+         * @var UserCart $cart
+         */
+        $cart = app(UserCart::class);
+
         return [
             ...parent::share($request),
             'auth'  => [
@@ -39,6 +45,7 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'cart'  => $cart->toData(),
         ];
     }
 }

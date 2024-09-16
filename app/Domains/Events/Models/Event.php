@@ -3,9 +3,11 @@
 namespace App\Domains\Events\Models;
 
 use App\Domains\Common\Casts\MoneyCast;
+use App\Domains\Common\Traits\Model\HasData;
 use App\Domains\Common\Traits\Model\InteractWithBuilder;
 use App\Domains\Common\Traits\Model\InteractWithFilter;
 use App\Domains\Events\Builders\EventBuilder;
+use App\Domains\Events\Data\EventData;
 use App\Domains\Events\Enums\Category;
 use App\Domains\Events\Enums\EventFilter;
 use App\Domains\Events\Enums\Language;
@@ -35,10 +37,13 @@ class Event extends Model
     use InteractWithBuilder;
     use InteractWithFilter;
     use HasFactory;
+    use HasData;
 
     public $customBuilder = EventBuilder::class;
 
     public $customFilter = EventFilter::class;
+
+    public string $dataClass = EventData::class;
 
     protected $guarded = [];
 

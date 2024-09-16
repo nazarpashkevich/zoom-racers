@@ -6,7 +6,7 @@
         <div class="text-xl font-semibold text-left hover:text-indigo-900 my-auto">{{ event.title }}</div>
         <div class="flex flex-col gap-2 mt-auto">
             <div class="text-xs text-gray-500">{{ resource.date() }}</div>
-            <div class="text-md font-semibold">{{ resource.price() }}</div>
+            <div class="text-md font-semibold">{{ formatPrice(event.price) }}</div>
             <div class="flex gap-4 items-center">
                 <div class="text-xs rounded-lg px-4 py-1 bg-purple-50 text-purple-700 inline-block">
                     {{ event.language.title }}
@@ -21,12 +21,8 @@
                 {{ event.platform.title }}
             </div>
         </div>
-        <PrimaryButton class="mt-auto">
-            <div class="flex gap-2 justify-center w-full">
-                <BasketIcon class="fill-white w-4 h-4"/>
-                Add to Card
-            </div>
-        </PrimaryButton>
+
+        <AddToCartButton class="mt-auto" :product-id="event.id" :type="CartProductType.Event"/>
     </Link>
 </template>
 <script lang="ts">
@@ -37,10 +33,19 @@ import LocationIcon from "@/components/Icons/LocationIcon.vue";
 import { Link } from '@inertiajs/vue3'
 import EventResource from "@/resources/EventResource";
 import EventModel from "@/contracts/events/EventModel";
+import AddToCartButton from "@/components/Cart/AddToCartButton.vue";
+import { CartProductType } from "@/enums/CartProductType";
+import { formatPrice } from "@/helpers/money";
 
 export default defineComponent({
     name: "EventGridCard",
-    components: { LocationIcon, BasketIcon, PrimaryButton, Link },
+    methods: { formatPrice },
+    computed: {
+        CartProductType() {
+            return CartProductType
+        }
+    },
+    components: { AddToCartButton, LocationIcon, BasketIcon, PrimaryButton, Link },
     props: {
         event: {
             type: Object as EventModel,
@@ -50,7 +55,7 @@ export default defineComponent({
     setup(props) {
         const resource = new EventResource(props.event);
 
-        return { resource };
+        return { resource, formatPrice };
     }
 })
 </script>

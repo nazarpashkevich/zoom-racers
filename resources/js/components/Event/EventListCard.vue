@@ -8,7 +8,7 @@
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="text-xl font-semibold text-left hover:text-indigo-900">{{ event.title }}</div>
                 <div class="text-xs text-gray-500">{{ resource.date() }}</div>
-                <div class="text-md font-semibold">{{ resource.price() }}</div>
+                <div class="text-md font-semibold">{{ formatPrice(event.price) }}</div>
                 <div class="flex gap-4">
                     <div class="text-xs rounded-lg px-4 py-1 bg-purple-50 text-purple-700 inline-block">
                         {{ event.language.title }}
@@ -46,9 +46,11 @@ import LocationIcon from "@/components/Icons/LocationIcon.vue";
 import { Link } from '@inertiajs/vue3'
 import EventModel from "@/contracts/events/EventModel";
 import EventResource from "@/resources/EventResource";
+import { formatPrice } from "../../helpers/money";
 
 export default defineComponent({
     name: "EventListCard",
+    methods: { formatPrice },
     components: { LocationIcon, BasketIcon, PrimaryButton, Link },
     computed: {
         hasActionSlot() {
@@ -64,7 +66,7 @@ export default defineComponent({
     setup(props) {
         const resource = new EventResource(props.event);
 
-        return { resource };
+        return { resource, formatPrice };
     }
 })
 </script>

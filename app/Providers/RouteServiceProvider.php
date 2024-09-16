@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Auth\Http\Routing\AuthRouteRegistrar;
+use App\Domains\Cart\Http\Routing\CartRouteRegistrar;
 use App\Domains\Common\Http\Routing\RouteRegistrar;
 use App\Domains\Events\Http\Routing\EventsRouteRegistrar;
 use App\Domains\Home\Http\Routing\HomeRouteRegistrar;
@@ -20,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
 {
     protected array $registrars = [
         AuthRouteRegistrar::class,
+        CartRouteRegistrar::class,
         EventsRouteRegistrar::class,
         HomeRouteRegistrar::class,
         MarketplaceRouteRegistrar::class,
