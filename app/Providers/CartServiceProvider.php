@@ -10,10 +10,12 @@ class CartServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(UserCart::class, fn ($app) => UserCartFactory::make(auth()->user()));
     }
 
     public function boot(): void
     {
+        $this->app->singleton(UserCart::class, function ($app) {
+            return UserCartFactory::make(auth()->user());
+        });
     }
 }

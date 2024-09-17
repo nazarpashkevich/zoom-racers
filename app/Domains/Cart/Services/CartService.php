@@ -9,6 +9,6 @@ class CartService
 {
     public function forUser(User $user): ?Cart
     {
-        return Cart::query()->forUser($user)->first();
+        return Cart::query()->firstOrCreate(['user_id' => $user->getQueueableId()]);
     }
 }

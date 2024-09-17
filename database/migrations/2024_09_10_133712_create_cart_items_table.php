@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Domains\Cart\Models\Cart::class)->constrained()->cascadeOnDelete();
             $table->unsignedInteger('quantity')->default(1);
             $table->morphs('productable');
             $table->timestamps();

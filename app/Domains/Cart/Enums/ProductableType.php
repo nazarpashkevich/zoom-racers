@@ -16,4 +16,11 @@ enum ProductableType: string
             self::Event   => Event::class,
         };
     }
+
+    public static function fromModel(string $model): self
+    {
+        return match ($model) {
+            Event::class => self::Event,
+        };
+    }
 }

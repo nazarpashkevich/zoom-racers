@@ -26,7 +26,7 @@ class UserCartFactory
 
     public function makeCart(): UserCart
     {
-        return new UserCart($this->items());
+        return new UserCart($this->items(), $this->user);
     }
 
     public function items(): Collection

@@ -5,7 +5,9 @@ namespace App\Domains\Cart;
 use App\Domains\Cart\Actions\LoadCartItemsDetailsAction;
 use App\Domains\Cart\Data\CartData;
 use App\Domains\Cart\Data\CartItemData;
+use App\Domains\Cart\Enums\ProductableType;
 use App\Domains\Cart\Models\Cart;
+use App\Domains\Cart\Models\CartItem;
 use App\Domains\Cart\Services\CartService;
 use App\Domains\User\Models\User;
 use Illuminate\Support\Collection;
@@ -77,12 +79,25 @@ class UserCart extends Facade
     {
         if ($this->cart) {
             // @todo postpone
-            $this->items->each(fn (CartItemData $item) => $item->toModel(
-                $this->cart->items->firstWhere([
-                    'productable_id'   => $item->productId,
-                    'productable_type' => $item->type,
-                ])
-            ));
+            $toDelete = $this->cart->items->filter(
+                fn (CartItem $item) => is_null(
+                    $this->items->where('type', ProductableType::fromModel($item->productable_type))
+                        ->firstWhere('productId', $item->productable_id)
+                )
+            )->pluck('id');
+
+            if ($toDelete->isNotEmpty()) {
+                $this->cart->items()->whereIn('id', $toDelete)->delete();
+            }
+
+            $this->items->each(
+                fn (CartItemData $item) => $item->toModel(
+                    $this->cart,
+                    $this->cart->items
+                        ->where('productable_type', $item->type->getModel())
+                        ->firstWhere('productable_id', $item->productId)
+                )->save()
+            );
         }
     }
 
