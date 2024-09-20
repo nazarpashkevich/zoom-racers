@@ -1,5 +1,5 @@
 <template>
-    <PrimaryButton @click="router().visit(route('cart.index'))">
+    <PrimaryButton @click="router().visit(route('order.index'))">
         <span class="w-full text-center">Checkout</span>
     </PrimaryButton>
     <SecondaryButton @click="router().visit(route('cart.clear'))">

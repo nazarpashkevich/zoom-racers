@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Cart;
+namespace App\Domains\Cart\Services;
 
 use App\Domains\Cart\Actions\LoadCartItemsDetailsAction;
 use App\Domains\Cart\Data\CartData;
@@ -8,16 +8,14 @@ use App\Domains\Cart\Data\CartItemData;
 use App\Domains\Cart\Enums\ProductableType;
 use App\Domains\Cart\Models\Cart;
 use App\Domains\Cart\Models\CartItem;
-use App\Domains\Cart\Services\CartService;
 use App\Domains\User\Models\User;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Session;
 
-class UserCart extends Facade
+class UserCart
 {
     protected CartService $cartService;
-    protected ?Cart $cart = null;
+    public ?Cart $cart = null;
 
     public function __construct(protected Collection $items, ?User $user = null)
     {

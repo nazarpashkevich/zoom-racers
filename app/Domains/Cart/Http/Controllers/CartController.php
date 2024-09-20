@@ -4,7 +4,7 @@ namespace App\Domains\Cart\Http\Controllers;
 
 use App\Domains\Cart\Http\Requests\CartRequest;
 use App\Domains\Cart\Services\CartService;
-use App\Domains\Cart\UserCart;
+use App\Domains\Cart\Services\UserCart;
 use F9Web\ApiResponseHelpers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;

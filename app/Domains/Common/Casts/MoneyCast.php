@@ -15,7 +15,7 @@ class MoneyCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes)
     {
-        return new Money($value, new Currency('usd'));
+        return new Money($value, new Currency($model->currency ?? 'usd'));
     }
 
     /**

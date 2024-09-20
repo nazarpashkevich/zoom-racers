@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Domains\Cart\Factories\UserCartFactory;
-use App\Domains\Cart\UserCart;
+use App\Domains\Cart\Services\UserCart;
 use Illuminate\Support\ServiceProvider;
 
 class CartServiceProvider extends ServiceProvider

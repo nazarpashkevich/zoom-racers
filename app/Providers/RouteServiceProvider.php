@@ -8,6 +8,7 @@ use App\Domains\Common\Http\Routing\RouteRegistrar;
 use App\Domains\Events\Http\Routing\EventsRouteRegistrar;
 use App\Domains\Home\Http\Routing\HomeRouteRegistrar;
 use App\Domains\Marketplace\Http\Routing\MarketplaceRouteRegistrar;
+use App\Domains\Order\Http\Routing\OrderRouteRegistrar;
 use App\Domains\User\Http\Routing\UserRouteRegistrar;
 use App\Domains\VirtualSpaces\Http\Routing\VirtualSpacesRouteRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -25,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider
         EventsRouteRegistrar::class,
         HomeRouteRegistrar::class,
         MarketplaceRouteRegistrar::class,
+        OrderRouteRegistrar::class,
         UserRouteRegistrar::class,
         VirtualSpacesRouteRegistrar::class,
     ];

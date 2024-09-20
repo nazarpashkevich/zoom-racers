@@ -3,9 +3,9 @@
 namespace App\Domains\Cart\Factories;
 
 use App\Domains\Cart\Data\CartItemData;
-use App\Domains\Cart\Models\Cart;
 use App\Domains\Cart\Models\CartItem;
-use App\Domains\Cart\UserCart;
+use App\Domains\Cart\Services\CartService;
+use App\Domains\Cart\Services\UserCart;
 use App\Domains\User\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -40,7 +40,7 @@ class UserCartFactory
 
     public function dbItems(): ?Collection
     {
-        if ($cart = Cart::query()->forUser($this->user)->first()) {
+        if ($cart = app(CartService::class)->forUser($this->user)) {
             return $cart->items->map(fn (CartItem $item) => CartItemData::fromModel($item));
         }
 
