@@ -40,6 +40,8 @@ class EventsRouteRegistrar extends RouteRegistrar
             ['prefix' => 'tickets', 'controller' => TicketsController::class, 'as' => 'tickets.'],
             function (Registrar $route) {
                 $route->get('', 'index')->name('index');
+                $route->get('{ticket}/cancel', 'cancel')->name('cancel');
+                $route->get('{ticket}/archive', 'archive')->name('archive');
             }
         );
     }

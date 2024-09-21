@@ -15,7 +15,7 @@ class CartServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(UserCart::class, function ($app) {
-            return UserCartFactory::make(auth()->user());
+            return UserCartFactory::handle(auth()->user());
         });
     }
 }

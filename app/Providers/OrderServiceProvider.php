@@ -16,7 +16,7 @@ class OrderServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->singleton(UserOrder::class, function ($app) {
-            return UserOrderFactory::make(auth()->user(), app(UserCart::class));
+            return UserOrderFactory::handle(auth()->user(), app(UserCart::class));
         });
     }
 }

@@ -23,4 +23,9 @@ trait ApiDictionarible
             'title' => Str::headline($enum->name),
         ];
     }
+
+    public function formatName(): string
+    {
+        return Str::headline($this->name);
+    }
 }

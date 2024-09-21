@@ -12,7 +12,7 @@ class EventsRequest extends FormRequest
     use WithSorting;
 
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the user is authorized to handle this request.
      */
     public function authorize(): bool
     {

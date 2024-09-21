@@ -14,7 +14,7 @@ class UserOrderFactory
     {
     }
 
-    public static function make(User $user, UserCart $cart): UserOrder
+    public static function handle(User $user, UserCart $cart): UserOrder
     {
         $self = new static();
 

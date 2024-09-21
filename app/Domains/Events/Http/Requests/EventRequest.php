@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules\Enum;
 class EventRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the user is authorized to handle this request.
      */
     public function authorize(): bool
     {

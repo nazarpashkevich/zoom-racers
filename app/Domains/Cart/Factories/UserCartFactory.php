@@ -19,7 +19,7 @@ class UserCartFactory
     /**
      * Get user basket (basket can be got from session or database)
      */
-    public static function make(?User $user = null): UserCart
+    public static function handle(?User $user = null): UserCart
     {
         return (new self($user))->makeCart();
     }

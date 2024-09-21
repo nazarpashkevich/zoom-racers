@@ -1,53 +1,28 @@
 <template>
-    <div class="py-4 px-12 flex gap-8 justify-end">
-        <div class="flex gap-3 items-center">
-            <InputLabel value="Show past" class="text-slate-600"/>
-            <Checkbox :checked="false"/>
-        </div>
-        <div class="flex gap-3 items-center">
-            <InputLabel value="Show cancelled" class="text-slate-600"/>
-            <Checkbox :checked="false"/>
-        </div>
-    </div>
     <div class="px-12 py-8 divide-y flex flex-col gap-4">
         <h2 class="text-2xl font-medium text-slate-700">Today</h2>
         <div class="py-4 px-12 grid grid-cols-3 gap-6">
-            <EventSmallCard>
-                <template #actions>
-                    <!-- only for future/happening events -->
-                    <DropdownLink :href="route('profile.edit')">Connect</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Download receipt</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Cancel</DropdownLink>
-                </template>
-            </EventSmallCard>
-            <EventSmallCard>
-                <template #actions>
-                    <!-- only for future/happening events -->
-                    <DropdownLink :href="route('profile.edit')">Connect</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Cancel</DropdownLink>
-                </template>
-            </EventSmallCard>
-            <EventSmallCard>
-                <template #actions>
-                    <!-- only for future/happening events -->
-                    <DropdownLink :href="route('profile.edit')">Connect</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Cancel</DropdownLink>
-                </template>
-            </EventSmallCard>
-            <EventSmallCard>
-                <template #actions>
-                    <!-- only for future/happening events -->
-                    <DropdownLink :href="route('profile.edit')">Connect</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Cancel</DropdownLink>
-                </template>
-            </EventSmallCard>
-            <EventSmallCard>
-                <template #actions>
-                    <!-- only for future/happening events -->
-                    <DropdownLink :href="route('profile.edit')">Connect</DropdownLink>
-                    <DropdownLink :href="route('profile.edit')">Cancel</DropdownLink>
-                </template>
-            </EventSmallCard>
+            <template v-for="ticket in tickets">
+                <EventSmallCard :event="ticket.event">
+                    <template #actions>
+                        <!-- only for future/happening events -->
+                        <template v-if="!ticket.isCanceled">
+                            <DropdownLink :href="ticket.event.link">Connect</DropdownLink>
+                            <DropdownLink
+                                v-if="ticket.ticketPath"
+                                href="#"
+                                @click.prevent="() => downloadRecipe(ticket)"
+                            >
+                                Download receipt
+                            </DropdownLink>
+                            <DropdownLink :href="route('tickets.cancel', ticket.id)">Cancel</DropdownLink>
+                        </template>
+                        <template v-else>
+                            <DropdownLink :href="route('tickets.archive', ticket.id)">Archive</DropdownLink>
+                        </template>
+                    </template>
+                </EventSmallCard>
+            </template>
         </div>
     </div>
 </template>
@@ -57,9 +32,21 @@ import EventSmallCard from "@/components/Event/EventSmallCard.vue";
 import DropdownLink from "@/components/DropdownLink.vue";
 import InputLabel from "@/components/Form/InputLabel.vue";
 import Checkbox from "@/components/Form/Checkbox.vue";
+import Ticket from "@/contracts/tickets/Ticket";
 
 export default defineComponent({
     name: "TicketList",
-    components: { Checkbox, InputLabel, DropdownLink, EventSmallCard }
+    components: { Checkbox, InputLabel, DropdownLink, EventSmallCard },
+    props: {
+        tickets: {
+            type: Array as Ticket[],
+            required: true
+        }
+    },
+    methods: {
+        downloadRecipe(ticket: Ticket) {
+            window.open(ticket.ticketPath);
+        }
+    }
 })
 </script>

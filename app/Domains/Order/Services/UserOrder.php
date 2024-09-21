@@ -64,7 +64,7 @@ class UserOrder
 
     protected function calculateShipping(): ?Money
     {
-        // @todo calculate depends on the address, make action/factory for it and maybe return data object
+        // @todo calculate depends on the address, handle action/factory for it and maybe return data object
         return $this->data->address != '' ? new Money(5000, new Currency('USD')) : null;
     }
 

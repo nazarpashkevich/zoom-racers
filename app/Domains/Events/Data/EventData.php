@@ -35,6 +35,7 @@ class EventData extends BaseData implements Modelable
         #[WithTransformer(EnumTransformer::class)]
         #[WithCast(EnumCast::class)]
         public Platform $platform,
+        // @todo check if user has ticket/ow
         public string $link,
         #[WithCast(MoneyCast::class)]
         public Money $price,

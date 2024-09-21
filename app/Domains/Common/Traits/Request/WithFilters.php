@@ -10,7 +10,18 @@ trait WithFilters
 
     public function filters(): ?Collection
     {
-        return new Collection(Arr::whereNotNull($this->get('filters', [])));
+        return collect(Arr::whereNotNull($this->get('filters', [])))
+            ->map(function ($value) {
+                if (is_string($value)) {
+                    if (strtolower($value) === 'true') {
+                        return true;
+                    } elseif (strtolower($value) === 'false') {
+                        return false;
+                    }
+                }
+
+                return $value;
+            });
     }
 
     protected function filtersRules(): array
