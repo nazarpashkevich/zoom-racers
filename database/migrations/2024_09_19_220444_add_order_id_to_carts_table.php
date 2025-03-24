@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('carts', function (Blueprint $table) {
-            //$table->foreignIdFor(\App\Domains\Order\Models\Order::class)->nullable()->constrained();
+            $table->foreignIdFor(\App\Domains\Order\Models\Order::class)->nullable()->constrained();
         });
     }
 

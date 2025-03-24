@@ -24,3 +24,5 @@ export default class CartService {
         return (await this.client.get(route(`cart.list`))).data.data;
     }
 }
+
+// @todo refactor!

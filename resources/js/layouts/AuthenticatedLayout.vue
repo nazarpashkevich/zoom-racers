@@ -28,6 +28,7 @@ const showingNavigationDropdown = ref(false);
                                 </Link>
                             </div>
 
+                            
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('home')" :active="route().current('home')">
@@ -43,9 +44,9 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('tickets.index')" :active="route().current('tickets.*')">
                                     Tickets
                                 </NavLink>
-                                <NavLink :href="route('virtual.index')" :active="route().current('virtual.*')">
-                                    Virtual Spaces
-                                </NavLink>
+                                <!--                                <NavLink :href="route('virtual.index')" :active="route().current('virtual.*')">-->
+                                <!--                                    Virtual Spaces-->
+                                <!--                                </NavLink>-->
                                 <NavLink :href="route('marketplace.index')" :active="route().current('marketplace.*')">
                                     Marketplace
                                 </NavLink>
@@ -142,9 +143,9 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
                             Tickets
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
-                            Virtual Spaces
-                        </ResponsiveNavLink>
+                        <!--                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">-->
+                        <!--                            Virtual Spaces-->
+                        <!--                        </ResponsiveNavLink>-->
                         <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
                             Marketplace
                         </ResponsiveNavLink>

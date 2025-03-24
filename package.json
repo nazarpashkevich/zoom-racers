@@ -25,6 +25,7 @@
         "@vuepic/vue-datepicker": "^9.0.2",
         "dayjs": "^1.11.13",
         "puppeteer": "^23.4.0",
+        "vue3-charts": "^1.1.33",
         "vuex": "^4.0.2"
     }
 }
