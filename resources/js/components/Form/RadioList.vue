@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import RadioButton from "@/components/Form/RadioButton.vue";
-import DictionaribleEnum from "@/contracts/common/DictionaribleEnum";
+import { DictionaribleEnum } from "@/types/common";
 
 export default defineComponent({
     name: "RadioButtonList",

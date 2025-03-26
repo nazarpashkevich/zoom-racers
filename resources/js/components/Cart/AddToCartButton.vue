@@ -16,7 +16,7 @@
 import { defineComponent } from 'vue'
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import BasketIcon from "@/components/Icons/BasketIcon.vue";
-import { CartProductType } from "@/enums/CartProductType";
+import { CartProductTypeEnum } from "@/enums/cart-product-type.enum";
 import { useForm } from "@inertiajs/vue3";
 import SecondaryButton from "@/components/SecondaryButton.vue";
 
@@ -35,7 +35,7 @@ export default defineComponent({
     },
     props: {
         type: {
-            type: String as CartProductType,
+            type: String as CartProductTypeEnum,
             required: true
         },
         productId: {

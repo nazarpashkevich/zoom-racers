@@ -1,11 +1,11 @@
-import CartItem from "@/contracts/cart/CartItem";
-import { CartProductType } from "@/enums/CartProductType";
+import { CartProductTypeEnum } from "@/enums/cart-product-type.enum";
+import { CartItem } from "@/types/cart";
 
 export function productableDomain(product: CartItem): string {
     switch (product.type) {
-        case CartProductType.Event:
+        case CartProductTypeEnum.Event:
             return 'events'
-        case CartProductType.Product:
+        case CartProductTypeEnum.Product:
             return 'products'
     }
 

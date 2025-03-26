@@ -3,8 +3,8 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { formatPrice } from "@/helpers/money";
-import Price from "@/contracts/common/Price";
+import { formatPrice } from "@/helpers/money.helpers";
+import { Price } from "@/types/common";
 
 export default defineComponent({
     name: "CartTotal",

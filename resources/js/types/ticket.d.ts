@@ -1,6 +1,6 @@
-import EventModel from "@/contracts/events/EventModel";
+import { EventModel } from "@/types/event";
 
-export default interface Ticket {
+export interface Ticket {
     id: number | null,
     event: EventModel,
     reference: string,

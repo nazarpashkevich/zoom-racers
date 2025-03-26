@@ -1,3 +1,19 @@
+export interface Currency {
+    symbol: string,
+    prefix: string,
+}
+
+export interface DictionaribleEnum {
+    value: string,
+    title: string
+}
+
+export interface Price {
+    amount: number,
+    value: number,
+    currency: Record<string, Currency>,
+}
+
 export interface PaginationMeta {
     from: number,
     to: number,

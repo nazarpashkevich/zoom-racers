@@ -22,12 +22,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import CartService from "@/services/CartService";
+import CartService from "@/services/cart.service";
 import { Link } from "@inertiajs/vue3";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
 import SmallCartItem from "@/components/Cart/SmallCartItem.vue";
-import { formatPrice } from "@/helpers/money";
+import { formatPrice } from "@/helpers/money.helpers";
 
 export default defineComponent({
     name: "SmallCartPopup",

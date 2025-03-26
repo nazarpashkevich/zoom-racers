@@ -1,5 +1,5 @@
-import EventModel from "@/contracts/events/EventModel";
 import dayjs from "dayjs";
+import { EventModel } from "@/types/event";
 
 export default class EventResource {
     constructor(protected event: EventModel) {

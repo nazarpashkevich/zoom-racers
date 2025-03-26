@@ -46,7 +46,7 @@ import UiSelect from "@/components/Form/UiSelect.vue";
 import ListViewIcon from "@/components/Icons/ListViewIcon.vue";
 import GridViewIcon from "@/components/Icons/GridViewIcon.vue";
 import ViewChanger from "@/components/List/ViewChanger.vue";
-import { ListViewMode } from "@/enums/ListViewMode";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 import EventGridCard from "@/components/Event/EventGridCard.vue";
 import Pagination from "@/components/List/Pagination.vue";
 import EventListCard from "@/components/Event/EventListCard.vue";
@@ -58,8 +58,8 @@ import Modal from "@/components/Modal.vue";
 import TextInput from "@/components/Form/TextInput.vue";
 import InputLabel from "@/components/Form/InputLabel.vue";
 import InputError from "@/components/Form/InputError.vue";
-import { BaseData } from "@/contracts/List";
-import EventModel from "@/contracts/events/EventModel";
+import { EventModel } from "@/types/event";
+import { BaseData } from "@/types/common";
 
 export default defineComponent({
     name: "PersonalEventsList",
@@ -87,12 +87,12 @@ export default defineComponent({
             { title: 'Date (asc)', value: "date:asc" },
             { title: 'Date (desc)', value: "date:desc" },
         ],
-        listViewModes: ListViewMode,
+        listViewModes: ListViewModeEnum,
     }),
     props: {
         viewMode: {
-            type: String as ListViewMode,
-            default: ListViewMode.Grid
+            type: String as ListViewModeEnum,
+            default: ListViewModeEnum.Grid
         },
         events: {
             type: Object as BaseData<EventModel>,

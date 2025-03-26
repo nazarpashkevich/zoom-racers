@@ -33,13 +33,13 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import CartItem from "@/contracts/cart/CartItem";
 import { Link, router } from "@inertiajs/vue3";
 import ControlNumberInput from "@/components/Form/ControlNumberInput.vue";
 import TrashIcon from "@/components/Icons/TrashIcon.vue";
-import { productableDomain } from "@/helpers/cart";
-import { formatPrice } from "@/helpers/money";
-import CartService from "@/services/CartService";
+import { productableDomain } from "@/helpers/cart.helpers";
+import { formatPrice } from "@/helpers/money.helpers";
+import CartService from "@/services/cart.service";
+import { CartItem } from "@/types/cart";
 
 export default defineComponent({
     name: "CartItems",

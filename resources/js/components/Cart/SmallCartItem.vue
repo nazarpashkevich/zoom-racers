@@ -24,13 +24,13 @@
 import { defineComponent } from 'vue'
 import TrashIcon from "@/components/Icons/TrashIcon.vue";
 import ControlNumberInput from "@/components/Form/ControlNumberInput.vue";
-import CartItem from "@/contracts/cart/CartItem";
 import { Link } from "@inertiajs/vue3";
-import { formatPrice } from "@/helpers/money";
-import { productableDomain } from "@/helpers/cart";
+import { formatPrice } from "@/helpers/money.helpers";
+import { productableDomain } from "@/helpers/cart.helpers";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
-import CartService from "@/services/CartService";
+import CartService from "@/services/cart.service";
+import { CartItem } from "@/types/cart";
 
 export default defineComponent({
     name: "SmallCartItem",
@@ -49,7 +49,7 @@ export default defineComponent({
         },
         async deleteItem(item: CartItem): void {
             this.cart = await this.service.remove(item);
-            
+
             this.$emit('update:cart', this.cart);
         },
     },

@@ -44,9 +44,9 @@ import PrimaryButton from "@/components/PrimaryButton.vue";
 import BasketIcon from "@/components/Icons/BasketIcon.vue";
 import LocationIcon from "@/components/Icons/LocationIcon.vue";
 import { Link } from '@inertiajs/vue3'
-import EventModel from "@/contracts/events/EventModel";
-import EventResource from "@/resources/EventResource";
-import { formatPrice } from "../../helpers/money";
+import EventResource from "@/resources/event.resource";
+import { formatPrice } from "@/helpers/money.helpers";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     name: "EventListCard",

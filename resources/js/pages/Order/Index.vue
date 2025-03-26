@@ -43,10 +43,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, watch } from 'vue';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
 import { Head, router, useForm, usePage } from '@inertiajs/vue3';
-import Cart from "@/contracts/cart/Cart";
 import OrderTotal from "@/pages/Order/Partials/OrderTotal.vue";
 import CheckoutSteps from "@/pages/Order/Partials/CheckoutSteps.vue";
 import TextInput from "@/components/Form/TextInput.vue";
@@ -60,8 +59,7 @@ import UserData from "@/pages/Cart/Partials/Steps/UserData.vue";
 import DeliveryData from "@/pages/Cart/Partials/Steps/DeliveryData.vue";
 import PaymentData from "@/pages/Cart/Partials/Steps/PaymentData.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
-import { Order } from "@stripe/stripe-js";
-import UserOrder from "@/contracts/order/UserOrder";
+import { UserOrder } from "@/types/order";
 
 export default defineComponent({
     methods: {},

@@ -27,7 +27,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { formatPrice } from "@/helpers/money";
+import { formatPrice } from "@/helpers/money.helpers";
 import SmallCartItem from "@/components/Cart/SmallCartItem.vue";
 import { Order } from "@stripe/stripe-js";
 

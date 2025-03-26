@@ -24,14 +24,13 @@
 import { defineComponent } from 'vue';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import CartItem from "@/contracts/cart/CartItem";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
 import SmallCartPopup from "@/components/Cart/SmallCartPopup.vue";
 import CartActions from "@/pages/Cart/Partials/CartActions.vue";
 import CartItems from "@/pages/Cart/Partials/CartItems.vue";
-import Cart from "@/contracts/cart/Cart";
 import CartTotal from "@/pages/Cart/Partials/CartTotal.vue";
+import { Cart } from "@/types/cart";
 
 export default defineComponent({
     components: {

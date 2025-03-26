@@ -1,7 +1,6 @@
-import Price from "@/contracts/common/Price";
-import DictionaribleEnum from "@/contracts/common/DictionaribleEnum";
+import { DictionaribleEnum, Price } from "@/types/common";
 
-export default interface EventModel {
+export interface EventModel {
     id: number | null,
     title: string,
     picture: string | File,

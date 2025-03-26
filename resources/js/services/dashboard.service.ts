@@ -1,4 +1,4 @@
-import ApiClient from "@/api/ApiClient";
+import ApiClient from "@/api/api.client";
 import { NewUsersStatistic } from "@/types/dashboard";
 
 class DashboardService {
@@ -12,4 +12,4 @@ class DashboardService {
     }
 }
 
-export default new DashboardService(ApiClient.make());
+export default new DashboardService(ApiClient);

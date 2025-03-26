@@ -31,18 +31,18 @@ import PrimaryButton from "@/components/PrimaryButton.vue";
 import BasketIcon from "@/components/Icons/BasketIcon.vue";
 import LocationIcon from "@/components/Icons/LocationIcon.vue";
 import { Link } from '@inertiajs/vue3'
-import EventResource from "@/resources/EventResource";
-import EventModel from "@/contracts/events/EventModel";
+import EventResource from "@/resources/event.resource";
 import AddToCartButton from "@/components/Cart/AddToCartButton.vue";
-import { CartProductType } from "@/enums/CartProductType";
-import { formatPrice } from "@/helpers/money";
+import { CartProductTypeEnum } from "@/enums/cart-product-type.enum";
+import { formatPrice } from "@/helpers/money.helpers";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     name: "EventGridCard",
     methods: { formatPrice },
     computed: {
         CartProductType() {
-            return CartProductType
+            return CartProductTypeEnum
         }
     },
     components: { AddToCartButton, LocationIcon, BasketIcon, PrimaryButton, Link },

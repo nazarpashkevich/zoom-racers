@@ -21,17 +21,17 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('home')">
+                                <Link :href="route('dashboard')">
                                     <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
                                     />
                                 </Link>
                             </div>
 
-                            
+
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('home')" :active="route().current('home')">
+                                <NavLink :href="route('dashboard')" :active="route().current('home')">
                                     Dashboard
                                 </NavLink>
                                 <NavLink :href="route('events.index')" :active="route().current('events.*')">
@@ -131,22 +131,22 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">
                             My Events
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">
                             Explore Events
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">
                             Tickets
                         </ResponsiveNavLink>
-                        <!--                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">-->
+                        <!--                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">-->
                         <!--                            Virtual Spaces-->
                         <!--                        </ResponsiveNavLink>-->
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('home')">
                             Marketplace
                         </ResponsiveNavLink>
                     </div>

@@ -32,7 +32,7 @@ import EventSmallCard from "@/components/Event/EventSmallCard.vue";
 import DropdownLink from "@/components/DropdownLink.vue";
 import InputLabel from "@/components/Form/InputLabel.vue";
 import Checkbox from "@/components/Form/Checkbox.vue";
-import Ticket from "@/contracts/tickets/Ticket";
+import { Ticket } from "@/types/ticket";
 
 export default defineComponent({
     name: "TicketList",

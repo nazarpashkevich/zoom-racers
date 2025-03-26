@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Domains\Auth\Http\Routing\AuthRouteRegistrar;
 use App\Domains\Cart\Http\Routing\CartRouteRegistrar;
 use App\Domains\Common\Http\Routing\RouteRegistrar;
+use App\Domains\Dashboard\Http\Routing\DashboardRouteRegistrar;
 use App\Domains\Events\Http\Routing\EventsRouteRegistrar;
-use App\Domains\Home\Http\Routing\HomeRouteRegistrar;
 use App\Domains\Marketplace\Http\Routing\MarketplaceRouteRegistrar;
 use App\Domains\Order\Http\Routing\OrderRouteRegistrar;
 use App\Domains\User\Http\Routing\UserRouteRegistrar;
@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
         AuthRouteRegistrar::class,
         CartRouteRegistrar::class,
         EventsRouteRegistrar::class,
-        HomeRouteRegistrar::class,
+        DashboardRouteRegistrar::class,
         MarketplaceRouteRegistrar::class,
         OrderRouteRegistrar::class,
         UserRouteRegistrar::class,

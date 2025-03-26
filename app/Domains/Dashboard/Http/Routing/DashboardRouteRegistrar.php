@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Home\Http\Routing;
+namespace App\Domains\Dashboard\Http\Routing;
 
 use App\Domains\Common\Http\Routing\RouteRegistrar;
 use Illuminate\Contracts\Routing\Registrar;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-class HomeRouteRegistrar extends RouteRegistrar
+class DashboardRouteRegistrar extends RouteRegistrar
 {
     protected array $middlewares = ['auth', 'web'];
 
@@ -21,6 +21,6 @@ class HomeRouteRegistrar extends RouteRegistrar
                 'laravelVersion' => Application::VERSION,
                 'phpVersion'     => PHP_VERSION,
             ]);
-        })->name('home');
+        })->name('dashboard');
     }
 }

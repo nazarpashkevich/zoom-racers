@@ -67,9 +67,9 @@ import { Head } from '@inertiajs/vue3';
 import LocationIcon from "@/components/Icons/LocationIcon.vue";
 import BasketIcon from "@/components/Icons/BasketIcon.vue";
 import PrimaryButton from "@/components/PrimaryButton.vue";
-import { ListViewMode } from "@/enums/ListViewMode";
-import EventModel from "@/contracts/events/EventModel";
-import EventResource from "@/resources/EventResource";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
+import EventResource from "@/resources/event.resource";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     components: {
@@ -80,7 +80,7 @@ export default defineComponent({
         Head
     },
     data: () => ({
-        viewMode: ListViewMode.List
+        viewMode: ListViewModeEnum.List
     }),
     props: {
         event: {

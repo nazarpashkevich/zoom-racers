@@ -1,18 +1,18 @@
-import { ListViewMode } from "@/enums/ListViewMode";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 
-export const viewMode = {
+export const viewModeStore = {
     state: () => ({
-        mode: ListViewMode.Grid
+        mode: ListViewModeEnum.Grid
     }),
 
     actions: {
-        setMode({ commit }, mode: ListViewMode) {
+        setMode({ commit }, mode: ListViewModeEnum) {
             commit('setActiveMode', mode);
         }
     },
 
     mutations: {
-        setActiveMode(state, mode: ListViewMode) {
+        setActiveMode(state, mode: ListViewModeEnum) {
             state.mode = mode;
         },
     },

@@ -37,7 +37,7 @@ class RegisteredUserController
 
         Auth::login($user);
 
-        return redirect(route('home', absolute: false));
+        return redirect(route('dashboard', absolute: false));
     }
 
     /**

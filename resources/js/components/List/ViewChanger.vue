@@ -12,28 +12,28 @@
 import { defineComponent } from 'vue'
 import ListViewIcon from "@/components/Icons/ListViewIcon.vue";
 import GridViewIcon from "@/components/Icons/GridViewIcon.vue";
-import { ListViewMode } from "@/enums/ListViewMode";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 
 
 export default defineComponent({
     name: "ViewChanger",
     components: { GridViewIcon, ListViewIcon },
     data: () => ({
-        listViewMode: ListViewMode,
+        listViewMode: ListViewModeEnum,
     }),
     props: {
         modelValue: {
-            type: String as ListViewMode,
+            type: String as ListViewModeEnum,
             default: 'list'
         }
     },
     computed: {
         isList() {
-            return this.modelValue === ListViewMode.List;
+            return this.modelValue === ListViewModeEnum.List;
         }
     },
     methods: {
-        changeView(view: ListViewMode) {
+        changeView(view: ListViewModeEnum) {
             this.$emit('update:modelValue', view);
         }
     }

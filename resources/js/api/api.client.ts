@@ -1,18 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { env } from "@/env";
 
-export default class ApiClient {
+class ApiClient {
     private axiosClient: AxiosInstance;
 
-    constructor(baseURL: string, defaultParams?: Record<string, string>) {
+    constructor(baseURL: string) {
         this.axiosClient = axios.create({
             baseURL,
-            params: defaultParams,
         });
-    }
-
-    public static make(params: Record<string, string> = []): ApiClient {
-        return new ApiClient(env('API_URL'), params);
     }
 
     public async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
@@ -31,3 +26,5 @@ export default class ApiClient {
         return this.axiosClient.delete(url, config);
     }
 }
+
+export default new ApiClient(env('API_URL'));

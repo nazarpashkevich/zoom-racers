@@ -1,4 +1,4 @@
-export enum ListViewMode {
+export enum ListViewModeEnum {
     List = 'list',
     Grid = 'grid',
 }

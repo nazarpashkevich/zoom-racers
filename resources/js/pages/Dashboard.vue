@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import LineChart from "@/pages/Dashboard/Partials/NewUsersChart.vue";
+import NewUsersChart from "@/pages/Dashboard/Partials/NewUsersChart.vue";
 </script>
 
 <template>
@@ -17,10 +17,10 @@ import LineChart from "@/pages/Dashboard/Partials/NewUsersChart.vue";
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
                     <div class="text-2xl font-semibold mb-12">🚀 Ahhh some insights of our achieves </div>
                     <div class="grid grid-cols-2 gap-12">
-                        <LineChart />
-                        <LineChart />
-                        <LineChart />
-                        <LineChart />
+                        <NewUsersChart />
+                        <NewUsersChart />
+                        <NewUsersChart />
+                        <NewUsersChart />
                     </div>
                 </div>
             </div>

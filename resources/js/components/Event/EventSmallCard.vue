@@ -42,8 +42,8 @@ import { Link } from '@inertiajs/vue3'
 import ThreeDotsIcon from "@/components/Icons/ThreeDotsIcon.vue";
 import DropdownLink from "@/components/DropdownLink.vue";
 import Dropdown from "@/components/Dropdown.vue";
-import EventModel from "@/contracts/events/EventModel";
-import EventResource from "@/resources/EventResource";
+import EventResource from "@/resources/event.resource";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     name: "EventSmallCard",

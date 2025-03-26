@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { PaginationMeta } from "@/contracts/List";
 import PaginationItem from "@/components/List/PaginationItem.vue";
 import { router } from "@inertiajs/vue3";
+import { PaginationMeta } from "@/types/common";
 
 export default defineComponent({
     name: "Pagination",

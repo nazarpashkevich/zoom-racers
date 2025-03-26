@@ -123,8 +123,8 @@ import DragAndDropInputInput from "@/components/Form/DragAndDropInputInput.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import UiSelect from "@/components/Form/UiSelect.vue";
 import TextAreaInput from "@/components/Form/TextAreaInput.vue";
-import EventService from "@/services/EventService";
-import EventModel from "@/contracts/events/EventModel";
+import EventService from "@/services/event.service";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     name: "EditEventForm",

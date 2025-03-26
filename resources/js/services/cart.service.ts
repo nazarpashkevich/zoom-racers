@@ -1,12 +1,8 @@
-import ApiClient from "@/api/ApiClient";
-import CartItem from "@/contracts/cart/CartItem";
+import ApiClient from "@/api/api.client";
+import { CartItem } from "@/types/cart";
 
-export default class CartService {
+class CartService {
     constructor(protected client: ApiClient) {
-    }
-
-    public static make(): CartService {
-        return new CartService(ApiClient.make());
     }
 
     public async update(item: CartItem): Promise<CartItem[]> {
@@ -25,4 +21,4 @@ export default class CartService {
     }
 }
 
-// @todo refactor!
+export default new CartService(ApiClient);

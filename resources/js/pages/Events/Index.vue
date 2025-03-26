@@ -25,10 +25,10 @@ import { defineComponent } from 'vue';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import EventsList from "@/pages/Events/Partials/EventsList.vue";
-import { ListViewMode } from "@/enums/ListViewMode";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 import EventsFilters from "@/components/Event/EventsFilters.vue";
-import { BaseData } from "@/contracts/List";
-import EventModel from "@/contracts/events/EventModel";
+import { BaseData } from "@/types/common";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     components: {
@@ -38,7 +38,7 @@ export default defineComponent({
         Head
     },
     data: () => ({
-        viewMode: ListViewMode.Grid
+        viewMode: ListViewModeEnum.Grid
     }),
     props: {
         events: {

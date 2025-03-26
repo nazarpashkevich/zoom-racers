@@ -23,7 +23,7 @@ import BasketIcon from "@/components/Icons/BasketIcon.vue";
 import PrimaryButton from "@/components/PrimaryButton.vue";
 import UpdateProfileInformationForm from "@/pages/Profile/Partials/UpdateProfileInformationForm.vue";
 import EditEventForm from "@/pages/Events/Partials/EditEventForm.vue";
-import EventModel from "@/contracts/events/EventModel";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     components: {

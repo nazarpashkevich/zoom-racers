@@ -22,13 +22,13 @@ import UiSelect from "@/components/Form/UiSelect.vue";
 import ListViewIcon from "@/components/Icons/ListViewIcon.vue";
 import GridViewIcon from "@/components/Icons/GridViewIcon.vue";
 import ViewChanger from "@/components/List/ViewChanger.vue";
-import { ListViewMode } from "@/enums/ListViewMode";
+import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 import EventGridCard from "@/components/Event/EventGridCard.vue";
 import Pagination from "@/components/List/Pagination.vue";
 import EventListCard from "@/components/Event/EventListCard.vue";
-import { BaseData } from "@/contracts/List";
-import EventModel from "@/contracts/events/EventModel";
 import SortSelect from "@/components/List/SortSelect.vue";
+import { BaseData } from "@/types/common";
+import { EventModel } from "@/types/event";
 
 export default defineComponent({
     name: "EventsList",
@@ -56,10 +56,10 @@ export default defineComponent({
             { title: 'Date (asc)', value: "date:asc" },
             { title: 'Date (desc)', value: "date:desc" },
         ],
-        listViewModes: ListViewMode,
+        listViewModes: ListViewModeEnum,
     }),
     methods: {
-        updateViewMode(mode: ListViewMode) {
+        updateViewMode(mode: ListViewModeEnum) {
             this.$store.dispatch('setMode', mode);
         }
     },

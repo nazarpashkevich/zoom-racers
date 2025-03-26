@@ -41,7 +41,7 @@ import Checkbox from "@/components/Form/Checkbox.vue";
 import FilterItem from "@/components/Filter/FilterItem.vue";
 import CheckboxList from "@/components/Form/CheckboxList.vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
-import EventService from "@/services/EventService";
+import EventService from "@/services/event.service";
 import { router, useForm } from "@inertiajs/vue3";
 import RadioButtonList from "@/components/Form/RadioList.vue";
 import SecondaryButton from "@/components/SecondaryButton.vue";
