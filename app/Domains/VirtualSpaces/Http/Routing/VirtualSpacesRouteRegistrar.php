@@ -13,7 +13,7 @@ class VirtualSpacesRouteRegistrar extends RouteRegistrar
     public function map(Registrar $route): void
     {
         $route->group(['prefix' => 'virtual', 'as' => 'virtual.'], function (Registrar $route) {
-            $route->get('/', fn () => Inertia::render('Dashboard'))->name('index');
+            $route->get('/', fn () => Inertia::render('dashboard.index'))->name('index');
         });
     }
 }

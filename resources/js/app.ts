@@ -4,10 +4,10 @@ import '../css/app.css';
 import { createApp, DefineComponent, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from 'ziggy-js';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { createStore } from 'vuex'
 import { viewModeStore } from "@/store/view-mode.store";
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

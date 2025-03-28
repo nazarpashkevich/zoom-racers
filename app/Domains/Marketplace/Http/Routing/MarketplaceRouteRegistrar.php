@@ -13,7 +13,7 @@ class MarketplaceRouteRegistrar extends RouteRegistrar
     public function map(Registrar $route): void
     {
         $route->group(['prefix' => 'marketplace', 'as' => 'marketplace.'], function (Registrar $route) {
-            $route->get('/', fn () => Inertia::render('Dashboard'))->name('index');
+            $route->get('/', fn () => Inertia::render('dashboard.index'))->name('index');
         });
     }
 }

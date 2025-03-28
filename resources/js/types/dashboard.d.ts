@@ -1,1 +1,2 @@
-export interface NewUsersStatistic {}
+export interface StatisticData {
+}

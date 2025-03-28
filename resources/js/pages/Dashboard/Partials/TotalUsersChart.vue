@@ -5,14 +5,14 @@ import DashboardService from "@/services/dashboard.service";
 import LineChart from "@/components/Chart/LineChart.vue";
 
 export default defineComponent({
-    name: "NewUsersChart",
+    name: "TotalUsersChart",
     components: { LineChart, Line, Grid, Chart },
     data: () => ({
         data: []
     }),
     methods: {
         async initData() {
-            this.data = await DashboardService.newUsers();
+            this.data = await DashboardService.totalUsers();
         }
     },
     mounted() {
@@ -22,5 +22,5 @@ export default defineComponent({
 </script>
 
 <template>
-    <LineChart :data="data" title="New Users"/>
+    <LineChart :data="data" title="Active Users"/>
 </template>
