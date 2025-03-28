@@ -1,32 +1,39 @@
 <template>
     <div class="flex mb-12">
-        <h1 class="font-semibold text-2xl text-gray-800">My Events <span class="text-gray-600 ml-2">(123+)</span></h1>
+        <h1 class="font-semibold text-2xl text-gray-800">
+            My Events <span v-if="events.meta?.total > 0" class="text-gray-600 ml-2">({{ events.meta?.total }}+)</span>
+        </h1>
         <Link :href="route('personal-events.create')" class="ml-auto">
             <PrimaryButton>Add</PrimaryButton>
         </Link>
     </div>
-    <div class="grid mb-12 grid-cols-1 divide-y">
-        <template v-for="event in events.data">
-            <EventListCard :event="event">
-                <template #actions>
-                    <div class="flex flex-col max-w-32 gap-4 justify-end ml-auto mr-12">
-                        <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', event.id))">
-                            Edit
-                        </PrimaryButton>
-                        <SecondaryButton @click.prevent="() => router.visit(route('events.show', event.id))">
-                            Show
-                        </SecondaryButton>
-                        <DangerButton @click.prevent="itemToDelete = event.id">
-                            Delete
-                        </DangerButton>
-                    </div>
-                </template>
-            </EventListCard>
-        </template>
-    </div>
-    <div class="flex justify-center">
-        <Pagination class="py-4" :meta="events.meta"/>
-    </div>
+    <template v-if="events.meta?.total > 0">
+        <div class="grid mb-12 grid-cols-1 divide-y">
+            <template v-for="event in events.data">
+                <EventListCard :event="event">
+                    <template #actions>
+                        <div class="flex flex-col max-w-32 gap-4 justify-end ml-auto mr-12">
+                            <PrimaryButton @click.prevent="() => router.visit(route('personal-events.edit', event.id))">
+                                Edit
+                            </PrimaryButton>
+                            <SecondaryButton @click.prevent="() => router.visit(route('events.show', event.id))">
+                                Show
+                            </SecondaryButton>
+                            <DangerButton @click.prevent="itemToDelete = event.id">
+                                Delete
+                            </DangerButton>
+                        </div>
+                    </template>
+                </EventListCard>
+            </template>
+        </div>
+        <div class="flex justify-center">
+            <Pagination :meta="events.meta" class="py-4"/>
+        </div>
+    </template>
+    <template v-else>
+        <EmptyState/>
+    </template>
     <Modal :show="Number.isInteger(itemToDelete)" @close="() => itemToDelete = null">
         <div class="p-6">
             <h2 class="text-lg font-medium text-gray-900">
@@ -60,10 +67,12 @@ import InputLabel from "@/components/Form/InputLabel.vue";
 import InputError from "@/components/Form/InputError.vue";
 import { EventModel } from "@/types/event";
 import { BaseData } from "@/types/common";
+import EmptyState from "@/components/EmptyState.vue";
 
 export default defineComponent({
     name: "PersonalEventsList",
     components: {
+        EmptyState,
         InputError, InputLabel, TextInput, Modal,
         DangerButton,
         SecondaryButton,

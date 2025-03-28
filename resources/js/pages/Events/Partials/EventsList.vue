@@ -1,12 +1,16 @@
 <template>
     <div class="flex mb-12">
-        <h1 class="font-semibold text-2xl text-gray-800">All events <span class="text-gray-600 ml-2">(123+)</span></h1>
+        <h1 class="font-semibold text-2xl text-gray-800">
+            All events <span class="text-gray-600 ml-2">({{ events.meta?.total }}+)</span>
+        </h1>
+
         <div class="ml-auto flex">
-            <SortSelect v-if="withSort" class="mr-8" :options="sortOptions" path="events.index"/>
+            <SortSelect v-if="withSort" :options="sortOptions" class="mr-8" path="events.index"/>
             <ViewChanger v-if="withViewMode" :model-value="viewMode" @update:model-value="updateViewMode"/>
         </div>
     </div>
-    <div class="grid mb-12" :class="[viewMode === listViewModes.Grid ? 'grid-cols-3 gap-12' : 'grid-cols-1 divide-y']">
+    <div :class="[viewMode === listViewModes.Grid ? 'grid-cols-3 gap-12' : 'grid-cols-1 divide-y']"
+         class="grid mb-12">
         <template v-for="event in events.data">
             <EventGridCard v-if="viewMode === listViewModes.Grid" :event="event"/>
             <EventListCard v-else :event="event"/>
@@ -79,4 +83,6 @@ export default defineComponent({
     },
 
 })
+</script>
+<script lang="ts" setup>
 </script>

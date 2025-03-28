@@ -5,8 +5,6 @@
         <div class="py-12">
             <div class="container mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x">
-                    <!-- filters -->
-
                     <div class="flex-1 py-8">
                     </div>
                     <div class="flex-[3] px-12 py-8 gap-12 divide-y">
@@ -27,9 +25,11 @@ import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
 import PersonalEventsList from "@/pages/Events/Partials/PersonalEventsList.vue";
 import { BaseData } from "@/types/common";
 import { EventModel } from "@/types/event";
+import EmptyState from "@/components/EmptyState.vue";
 
 export default defineComponent({
     components: {
+        EmptyState,
         PersonalEventsList,
         AuthenticatedLayout,
         EventsList,

@@ -9,8 +9,14 @@
             <div class="container mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg divide-y">
                     <TickerFilters :filters="filters"/>
-                    <TicketList :tickets="tickets"/>
+                    <template v-if="tickets?.length > 0">
+                        <TicketList :tickets="tickets"/>
+                    </template>
+                    <template v-else>
+                        <EmptyState/>
+                    </template>
                 </div>
+
             </div>
         </div>
     </AuthenticatedLayout>
@@ -24,9 +30,11 @@ import TicketList from "@/pages/Tickets/Partials/TicketList.vue";
 import InputLabel from "@/components/Form/InputLabel.vue";
 import Checkbox from "@/components/Form/Checkbox.vue";
 import TickerFilters from "@/pages/Tickets/Partials/TicketFilters.vue";
+import EmptyState from "@/components/EmptyState.vue";
 
 export default defineComponent({
     components: {
+        EmptyState,
         TickerFilters,
         Checkbox, InputLabel,
         TicketList,
