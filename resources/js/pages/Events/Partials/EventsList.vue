@@ -1,11 +1,11 @@
 <template>
-  <div class="flex mb-12">
+  <div class="flex mb-12 flex-col md:flex-row gap-8">
     <h1 class="font-semibold text-2xl text-gray-800">
       All events
       <span class="text-gray-600 ml-2">({{ events.meta?.total }}+)</span>
     </h1>
 
-    <div class="ml-auto flex">
+    <div class="ml-0 md:ml-auto justify-between flex">
       <SortSelect
         v-if="withSort"
         :options="sortOptions"
@@ -22,18 +22,18 @@
   <div
     :class="[
       viewMode === listViewModes.Grid
-        ? 'grid-cols-3 gap-12'
+        ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 max-md:divide-y'
         : 'grid-cols-1 divide-y',
     ]"
     class="grid mb-12"
   >
     <template v-for="event in events.data">
-      <EventGridCard v-if="viewMode === listViewModes.Grid" :event="event" />
-      <EventListCard v-else :event="event" />
+      <EventGridCard v-if="viewMode === listViewModes.Grid" :event="event"/>
+      <EventListCard v-else :event="event"/>
     </template>
   </div>
   <div class="flex justify-center">
-    <Pagination :meta="events.meta" />
+    <Pagination :meta="events.meta"/>
   </div>
 </template>
 <script lang="ts">

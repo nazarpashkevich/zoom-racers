@@ -160,37 +160,28 @@ const showingNavigationDropdown = ref(false);
         >
           <div class="pt-2 pb-3 space-y-1">
             <ResponsiveNavLink
-              :active="route().current('home')"
+              :active="route().current('dashboard.index')"
               :href="route('dashboard.index')"
             >
               Dashboard
             </ResponsiveNavLink>
             <ResponsiveNavLink
-              :active="route().current('home')"
-              :href="route('dashboard.index')"
-            >
-              My Events
-            </ResponsiveNavLink>
-            <ResponsiveNavLink
-              :active="route().current('home')"
-              :href="route('dashboard.index')"
+              :active="route().current('events.*')"
+              :href="route('events.index')"
             >
               Explore Events
             </ResponsiveNavLink>
             <ResponsiveNavLink
-              :active="route().current('home')"
-              :href="route('dashboard.index')"
+              :active="route().current('personal-events.*')"
+              :href="route('personal-events.index')"
+            >
+              My Events
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              :active="route().current('tickets.*')"
+              :href="route('tickets.index')"
             >
               Tickets
-            </ResponsiveNavLink>
-            <!--                        <ResponsiveNavLink :href="route('dashboard.index')" :active="route().current('home')">-->
-            <!--                            Virtual Spaces-->
-            <!--                        </ResponsiveNavLink>-->
-            <ResponsiveNavLink
-              :active="route().current('home')"
-              :href="route('dashboard.index')"
-            >
-              Marketplace
             </ResponsiveNavLink>
           </div>
 

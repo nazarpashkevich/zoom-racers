@@ -34,11 +34,11 @@ export default defineComponent({
       :data="data"
       :margin="margin"
       :size="{ width: 500, height: 250 }"
-      class="p-4"
+      class="p-4 overflow-x-scroll"
     >
       <template #layers>
-        <Grid strokeDasharray="2,2" />
-        <Line :dataKeys="['key', 'value']" />
+        <Grid strokeDasharray="2,2"/>
+        <Line :dataKeys="['key', 'value']"/>
       </template>
     </Chart>
   </div>

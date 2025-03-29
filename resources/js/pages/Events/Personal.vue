@@ -1,5 +1,5 @@
 <template>
-  <Head title="Personal" />
+  <Head title="Personal"/>
 
   <AuthenticatedLayout>
     <div class="py-12">
@@ -7,9 +7,9 @@
         <div
           class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x"
         >
-          <div class="flex-1 py-8"></div>
+          <div class="flex-1 py-8 hidden md:block"></div>
           <div class="flex-[3] px-12 py-8 gap-12 divide-y">
-            <PersonalEventsList :events="events" />
+            <PersonalEventsList :events="events"/>
           </div>
         </div>
       </div>

@@ -1,53 +1,53 @@
 <template>
-    <div class="px-12">
-        <div class="flex gap-2 mb-12">
-            <FilterIcon class="w-4 h-4 my-auto"/>
-            <h2 class="font-semibold text-xl">Filters</h2>
-        </div>
-        <div class="flex gap-8 flex-col">
-            <FilterItem title="Date">
-                <VueDatePicker
-                    v-model="filterForm.filters.date"
-                    :auto-position="false"
-                    :enable-time-picker="false"
-                    :teleport="true"
-                    range
-                />
-            </FilterItem>
-            <FilterItem title="Category">
-                <CheckboxList
-                    v-model="filterForm.filters.category"
-                    :options="categories"
-                />
-            </FilterItem>
-            <FilterItem title="Price">
-                <RadioButtonList
-                    v-model="filterForm.filters.priceRange"
-                    :options="priceRanges"
-                />
-            </FilterItem>
-            <FilterItem title="Languages">
-                <CheckboxList
-                    v-model="filterForm.filters.language"
-                    :options="languages"
-                />
-            </FilterItem>
-            <FilterItem title="Platforms">
-                <CheckboxList
-                    v-model="filterForm.filters.platform"
-                    :options="platforms"
-                />
-            </FilterItem>
-
-            <div class="flex justify-between">
-                <PrimaryButton class="mt-4" @click="submitFilters">Apply</PrimaryButton>
-                <SecondaryButton class="mt-4" @click="resetFilters"
-                >Reset
-                </SecondaryButton
-                >
-            </div>
-        </div>
+  <div class="px-12">
+    <div class="flex gap-2 mb-12">
+      <FilterIcon class="w-4 h-4 my-auto"/>
+      <h2 class="font-semibold text-xl">Filters</h2>
     </div>
+    <div class="flex gap-8 flex-col">
+      <FilterItem title="Date">
+        <VueDatePicker
+          v-model="filterForm.filters.date"
+          :auto-position="false"
+          :enable-time-picker="false"
+          :teleport="true"
+          range
+        />
+      </FilterItem>
+      <FilterItem title="Category">
+        <CheckboxList
+          v-model="filterForm.filters.category"
+          :options="categories"
+        />
+      </FilterItem>
+      <FilterItem title="Price">
+        <RadioButtonList
+          v-model="filterForm.filters.priceRange"
+          :options="priceRanges"
+        />
+      </FilterItem>
+      <FilterItem title="Languages">
+        <CheckboxList
+          v-model="filterForm.filters.language"
+          :options="languages"
+        />
+      </FilterItem>
+      <FilterItem title="Platforms">
+        <CheckboxList
+          v-model="filterForm.filters.platform"
+          :options="platforms"
+        />
+      </FilterItem>
+
+      <div class="flex justify-between">
+        <PrimaryButton class="mt-4" @click="submitFilters">Apply</PrimaryButton>
+        <SecondaryButton class="mt-4" @click="resetFilters"
+        >Reset
+        </SecondaryButton
+        >
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -63,55 +63,55 @@ import SecondaryButton from '@/components/SecondaryButton.vue';
 import PrimaryButton from '@/components/PrimaryButton.vue';
 
 export default defineComponent({
-    name: 'EventsFilters',
-    components: {
-        PrimaryButton,
-        SecondaryButton,
-        RadioButtonList,
-        CheckboxList,
-        FilterItem,
-        Checkbox,
-        FilterIcon,
-        VueDatePicker,
+  name: 'EventsFilters',
+  components: {
+    PrimaryButton,
+    SecondaryButton,
+    RadioButtonList,
+    CheckboxList,
+    FilterItem,
+    Checkbox,
+    FilterIcon,
+    VueDatePicker,
+  },
+  props: {
+    route: {
+      type: String,
+      required: true,
     },
-    props: {
-        route: {
-            type: String,
-            required: true,
-        },
-        appliedFilters: {
-            type: Object as Record<string, string[]>,
-            default: {},
-        },
+    appliedFilters: {
+      type: Object as Record<string, string[]>,
+      default: {},
     },
-    methods: {
-        submitFilters() {
-            this.filterForm.get(this.route, { replace: true });
-        },
-        resetFilters() {
-            router.visit(this.route);
-        },
+  },
+  methods: {
+    submitFilters() {
+      this.filterForm.get(this.route, { replace: true });
     },
-    async setup(props) {
-        const [languages, categories, platforms, priceRanges] = await Promise.all([
-            EventService.languages(),
-            EventService.categories(),
-            EventService.platforms(),
-            EventService.priceRanges(),
-        ]);
+    resetFilters() {
+      router.visit(this.route);
+    },
+  },
+  async setup(props) {
+    const [languages, categories, platforms, priceRanges] = await Promise.all([
+      EventService.languages(),
+      EventService.categories(),
+      EventService.platforms(),
+      EventService.priceRanges(),
+    ]);
 
-        
-        const filterForm = useForm({
-            filters: {
-                date: props.appliedFilters?.date ?? null,
-                language: props.appliedFilters?.language ?? [],
-                category: props.appliedFilters?.category ?? [],
-                platform: props.appliedFilters?.platform ?? [],
-                priceRange: props.appliedFilters?.priceRange ?? null,
-            },
-        });
 
-        return { languages, categories, platforms, priceRanges, filterForm };
-    },
+    const filterForm = useForm({
+      filters: {
+        date: props.appliedFilters?.date ?? null,
+        language: props.appliedFilters?.language ?? [],
+        category: props.appliedFilters?.category ?? [],
+        platform: props.appliedFilters?.platform ?? [],
+        priceRange: props.appliedFilters?.priceRange ?? null,
+      },
+    });
+
+    return { languages, categories, platforms, priceRanges, filterForm };
+  },
 });
 </script>

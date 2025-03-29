@@ -3,7 +3,7 @@
     <h1 class="font-semibold text-2xl text-gray-800">
       My Events
       <span v-if="events.meta?.total > 0" class="text-gray-600 ml-2"
-        >({{ events.meta?.total }}+)</span
+      >({{ events.meta?.total }}+)</span
       >
     </h1>
     <Link :href="route('personal-events.create')" class="ml-auto">
@@ -15,7 +15,7 @@
       <template v-for="event in events.data">
         <EventListCard :event="event">
           <template #actions>
-            <div class="flex flex-col max-w-32 gap-4 justify-end ml-auto mr-12">
+            <div class="flex md:flex-col max-w-32 gap-4 justify-end ml-auto mr-12">
               <PrimaryButton
                 @click.prevent="
                   () => router.visit(route('personal-events.edit', event.id))
@@ -39,11 +39,11 @@
       </template>
     </div>
     <div class="flex justify-center">
-      <Pagination :meta="events.meta" class="py-4" />
+      <Pagination :meta="events.meta" class="py-4"/>
     </div>
   </template>
   <template v-else>
-    <EmptyState />
+    <EmptyState/>
   </template>
   <Modal
     :show="Number.isInteger(itemToDelete)"
@@ -56,7 +56,8 @@
 
       <div class="mt-6 flex justify-end">
         <SecondaryButton @click="() => (itemToDelete = null)">
-          Cancel</SecondaryButton
+          Cancel
+        </SecondaryButton
         >
         <DangerButton class="ms-3" @click="deleteItem">Delete</DangerButton>
       </div>

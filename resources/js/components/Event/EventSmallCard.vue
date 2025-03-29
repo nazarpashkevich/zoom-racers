@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex gap-12 hover:bg-gray-50 rounded-lg py-4 px-6 w-96 border border-slate-200 shadow-sm pr-8 relative"
+    class="flex gap-12 hover:bg-gray-50 rounded-lg py-4 px-6 w-96 border border-slate-200 shadow-sm relative"
   >
     <div class="w-1/3">
       <div

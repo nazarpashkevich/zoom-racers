@@ -3,14 +3,14 @@
     :href="route('events.show', event.id)"
     class="flex gap-4 hover:bg-gray-50 py-8 px-6 h-72 cursor-pointer"
   >
-    <div class="w-1/3 px-6">
+    <div class="w-1/3 px-2 md:px-6">
       <div
         :style="{ backgroundImage: `url('${event.picture}')` }"
         class="bg-cover bg-center rounded-md w-full h-full"
       ></div>
     </div>
-    <div class="flex w-2/3">
-      <div class="w-1/2 flex flex-col gap-2">
+    <div class="flex max-md:flex-col w-2/3">
+      <div class="md:w-1/2 flex flex-col gap-2">
         <div class="text-xl font-semibold text-left hover:text-indigo-900">
           {{ event.title }}
         </div>
@@ -35,7 +35,7 @@
           {{ event.platform.title }}
         </div>
       </div>
-      <div class="w-1/2 text-right">
+      <div class="md:w-1/2 text-right">
         <template v-if="!hasActionSlot">
           <AddToCartButton
             :product-id="event.id"

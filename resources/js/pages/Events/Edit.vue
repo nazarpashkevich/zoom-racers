@@ -1,14 +1,14 @@
 <template>
-  <Head title="Edit" />
+  <Head title="Edit"/>
 
   <AuthenticatedLayout>
     <div class="py-12">
       <div class="container mx-auto sm:px-6 lg:px-8">
         <div
-          class="bg-white overflow-hidden shadow-sm sm:rounded-lg py-12 px-32"
+          class="bg-white overflow-hidden shadow-sm sm:rounded-lg py-12 px-12 md:px-32"
         >
           <Suspense>
-            <EditEventForm :event="event" />
+            <EditEventForm :event="event"/>
           </Suspense>
         </div>
       </div>

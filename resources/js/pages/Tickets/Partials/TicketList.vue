@@ -1,7 +1,7 @@
 <template>
-  <div class="px-12 py-8 divide-y flex flex-col gap-4">
+  <div class="px-6 md:px-12 py-8 divide-y flex flex-col gap-4">
     <h2 class="text-2xl font-medium text-slate-700">Today</h2>
-    <div class="py-4 px-12 grid grid-cols-3 gap-6">
+    <div class="py-4 md:px-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <template v-for="ticket in tickets">
         <EventSmallCard :event="ticket.event">
           <template v-if="ticket.isCanceled" #badge>
