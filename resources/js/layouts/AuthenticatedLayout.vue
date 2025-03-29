@@ -57,12 +57,12 @@ const showingNavigationDropdown = ref(false);
                 <!--                                <NavLink :href="route('virtual.index')" :active="route().current('virtual.*')">-->
                 <!--                                    Virtual Spaces-->
                 <!--                                </NavLink>-->
-                <NavLink
-                  :active="route().current('marketplace.*')"
-                  :href="route('marketplace.index')"
-                >
-                  Marketplace
-                </NavLink>
+                <!--                <NavLink-->
+                <!--                  :active="route().current('marketplace.*')"-->
+                <!--                  :href="route('marketplace.index')"-->
+                <!--                >-->
+                <!--                  Marketplace-->
+                <!--                </NavLink>-->
               </div>
             </div>
 
@@ -96,7 +96,8 @@ const showingNavigationDropdown = ref(false);
 
                   <template #content>
                     <DropdownLink :href="route('profile.edit')">
-                      Profile</DropdownLink
+                      Profile
+                    </DropdownLink
                     >
                     <DropdownLink
                       :href="route('logout')"
@@ -108,7 +109,7 @@ const showingNavigationDropdown = ref(false);
                   </template>
                 </Dropdown>
               </div>
-              <HeaderCartIcon class="ml-2" />
+              <HeaderCartIcon class="ml-2"/>
             </div>
 
             <!-- Hamburger -->
@@ -206,7 +207,8 @@ const showingNavigationDropdown = ref(false);
 
             <div class="mt-3 space-y-1">
               <ResponsiveNavLink :href="route('profile.edit')">
-                Profile</ResponsiveNavLink
+                Profile
+              </ResponsiveNavLink
               >
               <ResponsiveNavLink
                 :href="route('logout')"
@@ -222,13 +224,13 @@ const showingNavigationDropdown = ref(false);
       <!-- Page Heading -->
       <header v-if="$slots.header" class="bg-white shadow">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <slot name="header" />
+          <slot name="header"/>
         </div>
       </header>
 
       <!-- Page Content -->
       <main>
-        <slot />
+        <slot/>
       </main>
     </div>
   </div>

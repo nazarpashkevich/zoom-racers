@@ -4,6 +4,9 @@
     <div class="py-4 px-12 grid grid-cols-3 gap-6">
       <template v-for="ticket in tickets">
         <EventSmallCard :event="ticket.event">
+          <template v-if="ticket.isCanceled" #badge>
+            <span class="py-1 px-2 bg-red-100 text-red-400 rounded-lg text-xs">Cancelled</span>
+          </template>
           <template #actions>
             <!-- only for future/happening events -->
             <template v-if="!ticket.isCanceled">
@@ -16,12 +19,14 @@
                 Download receipt
               </DropdownLink>
               <DropdownLink :href="route('tickets.cancel', ticket.id)"
-                >Cancel</DropdownLink
+              >Cancel
+              </DropdownLink
               >
             </template>
             <template v-else>
               <DropdownLink :href="route('tickets.archive', ticket.id)"
-                >Archive</DropdownLink
+              >Archive
+              </DropdownLink
               >
             </template>
           </template>
