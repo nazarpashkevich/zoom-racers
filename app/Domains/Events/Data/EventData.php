@@ -9,6 +9,7 @@ use App\Domains\Events\Enums\Category;
 use App\Domains\Events\Enums\Language;
 use App\Domains\Events\Enums\Platform;
 use App\Domains\Events\Models\Event;
+use App\Domains\User\Data\UserData;
 use App\Libraries\Data\Casts\MoneyCast;
 use App\Libraries\Data\Transformers\EnumTransformer;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,7 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Casts\EnumCast;
+use Spatie\LaravelData\Optional;
 
 class EventData extends BaseData implements Modelable
 {
@@ -39,10 +41,21 @@ class EventData extends BaseData implements Modelable
         public string $link,
         #[WithCast(MoneyCast::class)]
         public Money $price,
+        public UserData|Optional $user,
         public string $description = '',
         public string $picture = '',
         public ?int $id = null,
     ) {
+    }
+
+    public static function fromModel(Event|Model $model): self
+    {
+        return self::from([
+            ...$model->toArray(),
+            'start' => $model->start,
+            'end'   => $model->end,
+            'user'  => $model->relationLoaded('user') ? UserData::fromModel($model->user) : null,
+        ]);
     }
 
     public function toModel(Event|int|null $event = null): Event
@@ -56,14 +69,5 @@ class EventData extends BaseData implements Modelable
         $event->fill($this->except('id')->all());
 
         return $event;
-    }
-
-    public static function fromModel(Event|Model $model): self
-    {
-        return self::from([
-            ...$model->toArray(),
-            'start' => $model->start,
-            'end'   => $model->end,
-        ]);
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <Head title="Dashboard" />
+  <Head :title="event.title"/>
 
   <AuthenticatedLayout>
     <div class="py-12">
@@ -9,8 +9,8 @@
         >
           <div class="w-1/2">
             <div
-              class="bg-cover bg-center h-96 rounded-md mx-auto"
               :style="{ backgroundImage: `url('${event.picture}')` }"
+              class="bg-cover bg-center h-96 rounded-md mx-auto"
             ></div>
           </div>
           <div class="w-1/2 px-8">
@@ -28,12 +28,12 @@
                     class="border rounded-xl text-xs text-slate-800 py-2 px-4 shadow-sm flex items-center gap-2 font-semibold cursor-pointer hover:bg-gray-50"
                   >
                     <div
-                      class="bg-contain bg-center h-6 w-6 rounded-full hover:text-indigo-900"
-                      :style="{
-                        backgroundImage: `url('https://aobnutrition.ie/cdn/shop/files/on-gold-whey-5lbs-gs5-shaker-aug24a_1080x.jpg?v=1724070923')`,
+                      :style="{ backgroundImage:
+                        `url('https://aobnutrition.ie/cdn/shop/files/on-gold-whey-5lbs-gs5-shaker-aug24a_1080x.jpg?v=1724070923')`,
                       }"
+                      class="bg-contain bg-center h-6 w-6 rounded-full hover:text-indigo-900"
                     ></div>
-                    Some author name
+                    {{ event.user?.name ?? '' }}
                   </div>
                 </div>
                 <div class="flex gap-4">
@@ -50,7 +50,7 @@
                   <div
                     class="text-xs rounded-lg px-4 py-1 bg-blue-50 text-blue-500 inline-block flex gap-2 items-center max-w-48"
                   >
-                    <LocationIcon class="w-3 h-3 fill-blue-500" />
+                    <LocationIcon class="w-3 h-3 fill-blue-500"/>
                     {{ event.platform.title }}
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="text-2xl font-semibold">{{ resource.price() }}</div>
                 <PrimaryButton class="ml-auto">
                   <div class="flex gap-2 justify-center w-full">
-                    <BasketIcon class="fill-white w-4 h-4" />
+                    <BasketIcon class="fill-white w-4 h-4"/>
                     Add to Card
                   </div>
                 </PrimaryButton>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Domains\Events\Models\Event;
 use App\Domains\User\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,9 +17,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name'  => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (!User::query()->where('email', 'test@example.com')->exists()) {
+            User::factory()->create([
+                'name'  => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
+
+        $countEvents = 100;
+        if (Event::query()->count() < $countEvents) {
+            Event::factory($countEvents)->create();
+        }
     }
 }
