@@ -18,56 +18,55 @@ use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Attributes\WithTransformer;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Casts\EnumCast;
-use Spatie\LaravelData\Optional;
 
 class EventData extends BaseData implements Modelable
 {
-    public function __construct(
-        public string $title,
-        #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $start,
-        #[WithCast(DateTimeInterfaceCast::class)]
-        public Carbon $end,
-        #[WithTransformer(EnumTransformer::class)]
-        #[WithCast(EnumCast::class)]
-        public Language $language,
-        #[WithTransformer(EnumTransformer::class)]
-        #[WithCast(EnumCast::class)]
-        public Category $category,
-        #[WithTransformer(EnumTransformer::class)]
-        #[WithCast(EnumCast::class)]
-        public Platform $platform,
-        // @todo check if user has ticket/ow
-        public string $link,
-        #[WithCast(MoneyCast::class)]
-        public Money $price,
-        public UserData|Optional $user,
-        public string $description = '',
-        public string $picture = '',
-        public ?int $id = null,
-    ) {
+  public function __construct(
+    public string $title,
+    #[WithCast(DateTimeInterfaceCast::class)]
+    public Carbon $start,
+    #[WithCast(DateTimeInterfaceCast::class)]
+    public Carbon $end,
+    #[WithTransformer(EnumTransformer::class)]
+    #[WithCast(EnumCast::class)]
+    public Language $language,
+    #[WithTransformer(EnumTransformer::class)]
+    #[WithCast(EnumCast::class)]
+    public Category $category,
+    #[WithTransformer(EnumTransformer::class)]
+    #[WithCast(EnumCast::class)]
+    public Platform $platform,
+    // @todo check if user has ticket/ow
+    public string $link,
+    #[WithCast(MoneyCast::class)]
+    public Money $price,
+    public ?UserData $user = null,
+    public string $description = '',
+    public string $picture = '',
+    public ?int $id = null,
+  ) {
+  }
+
+  public static function fromModel(Event|Model $model): self
+  {
+    return self::from([
+      ...$model->toArray(),
+      'start' => $model->start,
+      'end'   => $model->end,
+      'user'  => $model->relationLoaded('user') ? UserData::fromModel($model->user) : null,
+    ]);
+  }
+
+  public function toModel(Event|int|null $event = null): Event
+  {
+    if (is_int($event)) {
+      $event = Event::query()->findOrFail($event);
     }
 
-    public static function fromModel(Event|Model $model): self
-    {
-        return self::from([
-            ...$model->toArray(),
-            'start' => $model->start,
-            'end'   => $model->end,
-            'user'  => $model->relationLoaded('user') ? UserData::fromModel($model->user) : null,
-        ]);
-    }
+    $event ??= new Event();
 
-    public function toModel(Event|int|null $event = null): Event
-    {
-        if (is_int($event)) {
-            $event = Event::query()->findOrFail($event);
-        }
+    $event->fill($this->except('id', 'user')->all());
 
-        $event ??= new Event();
-
-        $event->fill($this->except('id')->all());
-
-        return $event;
-    }
+    return $event;
+  }
 }

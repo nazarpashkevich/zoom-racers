@@ -57,12 +57,11 @@
               </div>
               <div class="flex mb-8">
                 <div class="text-2xl font-semibold">{{ resource.price() }}</div>
-                <PrimaryButton class="ml-auto">
-                  <div class="flex gap-2 justify-center w-full">
-                    <BasketIcon class="fill-white w-4 h-4"/>
-                    Add to Card
-                  </div>
-                </PrimaryButton>
+                <AddToCartButton
+                  :product-id="event.id"
+                  :type="CartProductType.Event"
+                  class="ml-auto"
+                />
               </div>
               <div class="flex flex-col gap-2">
                 <div class="font-semibold text-xl">Description:</div>
@@ -88,14 +87,22 @@ import PrimaryButton from '@/components/PrimaryButton.vue';
 import { ListViewModeEnum } from '@/enums/list-view-mode.enum';
 import EventResource from '@/resources/event.resource';
 import { EventModel } from '@/types/event';
+import AddToCartButton from "@/components/Cart/AddToCartButton.vue";
+import { CartProductTypeEnum } from "@/enums/cart-product-type.enum";
 
 export default defineComponent({
   components: {
+    AddToCartButton,
     AuthenticatedLayout,
     LocationIcon,
     BasketIcon,
     PrimaryButton,
     Head,
+  },
+  computed: {
+    CartProductType() {
+      return CartProductTypeEnum;
+    },
   },
   data: () => ({
     viewMode: ListViewModeEnum.List,
