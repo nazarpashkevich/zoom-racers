@@ -8,7 +8,7 @@
           class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x"
         >
           <div class="flex-1 py-8 hidden md:block"></div>
-          <div class="flex-[3] px-12 py-8 gap-12 divide-y">
+          <div class="flex-[3] px-6 md:px-12 py-8 gap-12 divide-y">
             <PersonalEventsList :events="events"/>
           </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
   <Link
     :href="route('events.show', event.id)"
-    class="flex gap-4 hover:bg-gray-50 py-8 px-6 h-72 cursor-pointer"
+    class="flex gap-4 hover:bg-gray-50 py-8 px-2 md:px-6 h-72 cursor-pointer"
   >
     <div class="w-1/3 px-2 md:px-6">
       <div
