@@ -80,57 +80,58 @@ access premium features for additional revenue.
 
 1. **Clone the repository:**
 
- ```bash
- git clone https://github.com/yourusername/virtual-racing-platform.git
- cd virtual-racing-platform
-  ```
+```bash
+git clone https://github.com/yourusername/virtual-racing-platform.git
+cd virtual-racing-platform
+```
 
 2. **Install backend dependencies:**
 
-  ```bash
-  composer install
-  ```
+```bash
+composer install
+```
 
 3. **Install frontend dependencies:**
 
-  ```bash
-  npm install
-  ```
+```bash
+npm install
+```
 
 4. **Set up environment variables:**
 
-  ```bash
-  cp .env.example .env
-  php artisan key:generate
-  ```
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
 5. **Run Docker containers:**
 
-  ```bash
-  sail up
-  ```
+```bash
+sail up
+```
 
 6. **Migrate the database:**
 
-  ```bash
-  sail artisan migrate
-  ```
+```bash
+sail artisan migrate
+```
 
 #### Prod mode
 
-1. **Clone ``docker-compose-prod.yml`` as docker-compose.yml**
+1. **Clone `docker-compose-prod.yml` as docker-compose.yml**
 
 2. **Setup .env variables**
 
 3. **Up application**
 
-    ```bash
-    docker-compose up
+   ```bash
+   docker-compose up
    ```
+
 4. **For update use next command:**
-    ```bash
-     docker-compose pull 
-    ```
+   ```bash
+    docker-compose pull
+   ```
 
 ## Usage
 

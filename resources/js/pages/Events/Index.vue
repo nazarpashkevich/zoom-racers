@@ -1,66 +1,70 @@
 <template>
-    <Head title="Index"/>
+  <Head title="Index" />
 
-    <AuthenticatedLayout>
-        <div class="py-12">
-            <div class="container mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x">
-                    <template v-if="events.meta?.total > 0">
-                        <div class="flex-1 py-8">
-                            <Suspense>
-                                <EventsFilters :applied-filters="filters"
-                                               :route="route('events.index', {sort})"/>
-                            </Suspense>
-                        </div>
-                        <div class="flex-[3] px-12 py-8 gap-12">
-                            <EventsList :events="events"/>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <EmptyState/>
-                    </template>
-                </div>
+  <AuthenticatedLayout>
+    <div class="py-12">
+      <div class="container mx-auto sm:px-6 lg:px-8">
+        <div
+          class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex divide-x"
+        >
+          <template v-if="events.meta?.total > 0">
+            <div class="flex-1 py-8">
+              <Suspense>
+                <EventsFilters
+                  :applied-filters="filters"
+                  :route="route('events.index', { sort })"
+                />
+              </Suspense>
             </div>
+            <div class="flex-[3] px-12 py-8 gap-12">
+              <EventsList :events="events" />
+            </div>
+          </template>
+          <template v-else>
+            <EmptyState />
+          </template>
         </div>
-    </AuthenticatedLayout>
+      </div>
+    </div>
+  </AuthenticatedLayout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import EventsList from "@/pages/Events/Partials/EventsList.vue";
-import { ListViewModeEnum } from "@/enums/list-view-mode.enum";
-import EventsFilters from "@/components/Event/EventsFilters.vue";
-import { BaseData } from "@/types/common";
-import { EventModel } from "@/types/event";
-import EmptyState from "@/components/EmptyState.vue";
+import EventsList from '@/pages/Events/Partials/EventsList.vue';
+import { ListViewModeEnum } from '@/enums/list-view-mode.enum';
+import EventsFilters from '@/components/Event/EventsFilters.vue';
+import { BaseData } from '@/types/common';
+import { EventModel } from '@/types/event';
+import EmptyState from '@/components/EmptyState.vue';
 
 export default defineComponent({
-    components: {
-        EmptyState,
-        EventsFilters,
-        AuthenticatedLayout,
-        EventsList,
-        Head
+  components: {
+    EmptyState,
+    EventsFilters,
+    AuthenticatedLayout,
+    EventsList,
+    Head,
+  },
+  data: () => ({
+    viewMode: ListViewModeEnum.Grid,
+  }),
+  props: {
+    events: {
+      type: Object as BaseData<EventModel>,
+      required: true,
     },
-    data: () => ({
-        viewMode: ListViewModeEnum.Grid
-    }),
-    props: {
-        events: {
-            type: Object as BaseData<EventModel>,
-            required: true
-        },
-        filters: {
-            type: Object as Record<string, string[]>,
-            required: true
-        }
+    filters: {
+      type: Object as Record<string, string[]>,
+      required: true,
     },
-    setup() {
-        const sort = new URLSearchParams(window.location.search).get('sort');
+  },
+  setup() {
+    const sort = new URLSearchParams(window.location.search).get('sort');
 
-        return { sort };
-    }
+    return { sort };
+  },
 });
 </script>

@@ -1,2 +1,1 @@
-export interface StatisticData {
-}
+export interface StatisticData {}

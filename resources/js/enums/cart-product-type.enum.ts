@@ -1,4 +1,4 @@
 export enum CartProductTypeEnum {
-    Event = 'event',
-    Product = 'product',
+  Event = 'event',
+  Product = 'product',
 }

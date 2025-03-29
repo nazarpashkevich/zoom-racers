@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/html && vendor/bin/envoy run deploy"
+          script: 'cd /var/www/html && vendor/bin/envoy run deploy'

@@ -5,29 +5,33 @@ import { createApp, DefineComponent, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import '@vuepic/vue-datepicker/dist/main.css';
-import { createStore } from 'vuex'
-import { viewModeStore } from "@/store/view-mode.store";
+import { createStore } from 'vuex';
+import { viewModeStore } from '@/store/view-mode.store';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 const store = createStore({
-    modules: {
-        viewMode: viewModeStore
-    }
+  modules: {
+    viewMode: viewModeStore,
+  },
 });
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .use(ZiggyVue)
-            .use(store)
-            .mount(el);
-    },
-    progress: {
-        color: '#4B5563',
-    },
+  title: (title) => `${title} - ${appName}`,
+  resolve: (name) =>
+    resolvePageComponent(
+      `./pages/${name}.vue`,
+      import.meta.glob<DefineComponent>('./pages/**/*.vue')
+    ),
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .use(ZiggyVue)
+      .use(store)
+      .mount(el);
+  },
+  progress: {
+    color: '#4B5563',
+  },
 });
